@@ -28,6 +28,8 @@ Do not alter unrelated dish IDs or overwrite saved user notes. Removed entries' 
 
 ## UX
 
+The enlarged wheel offers a session-local `wheelMulti` switch, default off. `chooseWheelCountry` toggles a country in the existing Set and keeps the modal open only when that switch is on inside the wheel dialog; otherwise it preserves single-country focus/close behavior. Both pointer and keyboard activation must use that helper. Select all and Clear all are explicit and keep the wheel open in either mode. Empty means none, never all. Done closes the dialog. The live selected-count label and underlying country picker must remain consistent; don't replace the modal DOM while toggling sectors or destroy keyboard focus.
+
 Keep the top minimal: only the compact World Flavors brand, then functional controls and dishes. The user explicitly removed the promotional heading, subtitle and dish tally to preserve phone space. Do not reintroduce an intro/hero. Result heading and live count remain screen-reader-only, not a visible extra row.
 
 Keep North America and South America separate in both the shared region mapping, picker and wheel. North America includes United States, Canada, Mexico, Central America and Caribbean; South America includes Brazil, Argentina, Uruguay, Chile, Peru and Bolivia. The user explicitly requested this split; do not merge them into Americas again.

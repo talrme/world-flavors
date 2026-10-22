@@ -88,6 +88,16 @@ async function run(variant,mobile){
  await page.screenshot({path:fileURLToPath(new URL(`test-results/wheel-${mobile?'phone':'desktop'}.png`,root))});
  await page.locator('#modal [data-wheel-country="India"]').click({force:true});await page.waitForTimeout(220);
  assert(await page.locator('#country-summary').textContent()==='India','Wheel sector focuses country');
+ await page.locator('[data-action="wheel"]:visible').first().click();await page.locator('[data-wheel-multi]').check();
+ await page.locator('#modal [data-action="clear-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('0 '),'Wheel clear all selects none');
+ await page.locator('#modal [data-wheel-country="Germany"]').click({force:true});assert(await page.locator('#modal').isVisible(),'Multi-select leaves wheel open');
+ await page.locator('#modal [data-wheel-country="Japan"]').focus();await page.keyboard.press('Space');
+ assert((await page.locator('#result-count').textContent()).startsWith('6 '),'Wheel multi-select combines countries');
+ assert(await page.locator('#wheel-count').textContent()==='2 selected','Wheel selection count updates');
+ await page.waitForTimeout(600);await page.screenshot({path:fileURLToPath(new URL(`test-results/wheel-multi-${mobile?'phone':'desktop'}.png`,root))});
+ await page.locator('#modal [data-wheel-country="Germany"]').focus();await page.keyboard.press('Enter');assert((await page.locator('#result-count').textContent()).startsWith('3 '),'Wheel can deselect a country');
+ await page.locator('#modal [data-action="select-all-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('93 '),'Wheel select all restores all dishes');
+ await page.locator('[data-wheel-multi]').uncheck();await page.locator('#modal .wheel-bulk [data-action="close"]').click();await page.waitForTimeout(220);assert(await page.locator('#modal').isHidden(),'Wheel Done closes modal');
  assert(await page.locator('.dish-row').first().evaluate(el=>getComputedStyle(el).backgroundColor==='rgba(0, 0, 0, 0)'),'No rectangular row highlight remains after a wheel selection');
  await page.locator('#country').click();await page.locator('[data-action="select-all-countries"]').click();await close(page);
  await page.locator('[data-action="settings"]').click();

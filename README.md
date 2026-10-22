@@ -16,6 +16,8 @@ The Countries / regions picker supports any combination of countries, Select all
 
 ## Food preferences and sources
 
+The enlarged wheel includes a Multi-select switch (off initially). With it on, mouse/touch clicks or Enter/Space toggle individual countries and leave the wheel open; Done closes it. Select all includes all 31 entries, while Clear all selects none. The picker and wheel share the same selection. With Multi-select off, a sector focuses one country and closes the wheel as before. The mode is remembered for the current visit only.
+
 The wheel center shows the country's flag on hover or keyboard focus, with the food icon as a fallback for broader regions and the idle wheel.
 
 Country headings show subtle flavor notes from the original photographed wheel. Click a country name for the fuller list of herbs, spices and blends. Settings > Show country flavor notes hides the inline notes and saves that preference locally. Wheel hover and keyboard focus always show the country's spices, regardless of the inline setting. These are representative cues, not exhaustive cuisine definitions.
