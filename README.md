@@ -2,50 +2,52 @@
 
 **Live site: [talrme.github.io/world-flavors](https://talrme.github.io/world-flavors/)**
 
-A food explorer built around Tal's World of Flavor photo and a researched table of 93 dishes across 31 countries and regional entries. Easy home cooking, Instant Pot and slow-cooker recipes, and more involved dishes to try as takeout.
+A food explorer inspired by Tal's World of Flavor photo. The selected Field Notes design is now the main site; all staging options and the chooser have been removed.
 
-## Five staging options
+## Explore
 
-The root page is the chooser. No option has been promoted yet.
+93 dishes across 31 countries and regional entries, with 64 home-cooking suggestions and 29 restaurant-first picks. Search by ingredient, dish or country; filter cooking method; save favorites; mark dishes tried; and keep personal notes.
 
-1. [Field Notes](https://talrme.github.io/world-flavors/staging-1/): country notebook, editorial lists, green and white.
-2. [Supper Club](https://talrme.github.io/world-flavors/staging-2/): bold cherry menu and dish cards.
-3. [Flavor Passport](https://talrme.github.io/world-flavors/staging-3/): blue country pages and a tasted count.
-4. [The Flavor Wheel](https://talrme.github.io/world-flavors/staging-4/): the original photo at the center of exploration.
-5. [Kitchen Counter](https://talrme.github.io/world-flavors/staging-5/): a compact table on desktop and readable entries on phones.
+The circular flavor wheel has separate country sectors, continent bands, keyboard/touch selection, and a smoothly moving highlight. Hovering a dish highlights its country. Tap a country to filter the list. On phones the wheel opens from the Flavor wheel button; on desktop it is also beside the list. Your original photographed wheel is available through Original photo in the wheel dialog.
 
-All five use the same real 93-dish dataset, recipe links, search, country and cooking-method filters, sort order, surprise pick, bookmarks, tried list, personal notes, original wheel, and settings. Country sectors on the photo highlight when you hover/select a dish. The photo has perspective, so sector outlines are approximate and follow its groupings: for example Argentina/Uruguay share one sector. Tap a sector to filter that country; use the selector for separately listed countries in a shared sector.
+## Food preferences and sources
 
-## Settings and data
+The recommendations avoid pork. Seventeen entries were replaced, including the original pork dishes and recipes with less obvious cured-meat ingredients. Examples: beef barbacoa replaces carnitas, galinhada replaces feijoada, and vegetarian miso ramen replaces tonkotsu.
 
-- Original, Night, Garden and Cherry themes apply immediately.
-- Compact rows, motion, and wheel visibility save on this device.
-- Saved/tried dishes and notes save to browser localStorage, shared across the five options on the same origin. There is no account or server; these do not sync across phones.
-- Centered dialogs close with the rotating X, Escape, or a tap outside. Notes save as you type.
-- Save / Share includes iPhone and Android home-screen instructions and copies the current option's link. Each option has its own install manifest so installed shortcuts reopen that option.
-- App and favicon PNGs are included locally; no CDN is needed for the site.
+Where a linked recipe offers alternatives, preparation notes specify the non-pork choice (for example butter in empanadas or vegetable oil in mole). For takeout, confirm stocks, fats, fillings and toppings with the restaurant. This is a browsing guide, not an allergy or cross-contact guarantee.
 
-## Food table
+Every dish links to a real recipe. Instant Pot (13) and slow cooker (4) filters include specifically linked appliance instructions; one recipe supports both. General adaptation ideas are separate, not tested conversions. Timings are approximate and may exclude soaking or marinating as noted. Follow the source recipe for pressure build-up/release and appliance timing.
 
-`shared/dishes.mjs` stores the dish information and cooking judgments. `shared/sources.json` contains recipe URLs. `shared/data.js` supplies app IDs, country sectors, and explicit appliance-recipe classifications. The filters for Instant Pot and slow cooker include specifically linked recipes for those methods, not every dish that could be adapted. Some links may be paywalled or become unavailable; the site does not copy or host recipes.
+Download the current [food table CSV](assets/world-of-flavor.csv). Regional examples are representative, not exhaustive.
 
-Times are approximate for the base method shown. Use actual appliance recipe instructions rather than converting times directly. Region entries are examples, not a complete survey. The source table is downloadable at `assets/world-of-flavor.csv`.
+## Settings and saving
 
-## Local preview
+Original, Night, Garden and Cherry themes apply immediately. Compact rows, wheel visibility and animations are saved on this device. Reduced-motion system preferences are respected.
 
-No build is required. Open this folder with a static server (e.g. Cursor Live Server). JavaScript modules and the recipe JSON require HTTP; double-clicking HTML with a file URL is not supported. If serving the parent Websites For Fun folder, open `/world-flavors/`.
+Saved/tried dishes, notes and settings use browser localStorage (`world-flavors-v1`). Existing staging preferences and unchanged-dish journals are preserved on the same origin. No login or backend; nothing syncs across phones.
 
-## GitHub Pages
+Centered solid dialogs close with the rotating X, Escape or a tap outside. Notes save as you type. Save / Share includes iPhone and Android home-screen instructions and the main website URL.
+
+## Files and testing
+
+- `shared/app.js`: filters, list, journal, settings and dialogs.
+- `shared/wheel.js` / `shared/wheel.css`: circular explorer and interruptible selection animation.
+- `shared/dishes.mjs` / `shared/data.js`: dish content and appliance classifications.
+- `shared/sources.json`: recipe links.
+- `tools/export-csv.mjs`: regenerate the CSV after editing dish data.
+- `tools/check.mjs`: Playwright regression checks at desktop, phone and narrow-phone widths.
+- `manifest.webmanifest`: root install scope and PNG phone icons.
+
+No build step. Serve through HTTP (Cursor Live Server works); double-clicking HTML is not supported because the site uses JavaScript modules. If serving Websites For Fun, use `/world-flavors/`. The optional `node tools/serve.cjs` preview runs on port 5178.
+
+## Publishing
 
 Repository: https://github.com/talrme/world-flavors
 
-In GitHub, go to **Settings > Pages**, choose **Deploy from a branch**, select **main** and **/(root)**, then Save. The link above becomes available after GitHub finishes publishing. No Google Sheet or backend setup is required.
+GitHub Pages: Settings > Pages > Deploy from a branch > main > /(root). No backend configuration required.
 
-## Assets and credits
+## Credits
 
-- Flavor wheel: user's original supplied photograph, compressed locally to WebP.
-- Noodle bowl icon: [Twemoji](https://github.com/jdecked/twemoji), graphics [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Source SVG converted to PNG icons (32, 180, 192 and 512 px). The SVG is retained in assets.
-- Interface icons: [Lucide](https://lucide.dev), ISC license. Bundled locally.
-- Dish and recipe research: recipe creators linked from every dish, including Maangchi, Just One Cookbook, Piping Pot Curry, Ministry of Curry, RecipeTin Eats, The Woks of Life and others.
+Original flavor-wheel photograph supplied by Tal, compressed to WebP. The new wheel is a code-native interactive visualization inspired by that photo, not a transcription of all its spice labels.
 
-`prepare.mjs` is a one-time local asset/page preparation script tied to this machine's source image and bundled runtime; the deployed site needs no Node dependencies.
+Noodle bowl PNGs are adapted from [Twemoji](https://github.com/jdecked/twemoji), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); source SVG retained. Bundled [Lucide](https://lucide.dev) icons use ISC/MIT licenses in `shared/LUCIDE-LICENSE`. Recipe creators are credited through each dish's source link.

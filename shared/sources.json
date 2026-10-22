@@ -7,10 +7,6 @@
     "url": "https://www.simplyrecipes.com/recipes/moqueca___brazilian_fish_stew/",
     "query": "moqueca recipe simply recipes"
   },
-  "Feijoada": {
-    "url": "https://www.dadcooksdinner.com/pressure-cooker-feijoada-brazilian-black-bean-and-meat-stew/",
-    "query": "instant pot feijoada recipe Brazilian"
-  },
   "Groundnut stew (maafe)": {
     "url": "https://recipesfromapantry.com/slow-cooker-african-peanut-stew-post/",
     "query": "West African peanut stew slow cooker recipe"
@@ -51,14 +47,6 @@
     "url": "https://thewoksoflife.com/stir-fried-tomato-and-egg/",
     "query": "tomato egg stir fry woks of life"
   },
-  "Red-braised pork belly": {
-    "url": "https://www.dadcooksdinner.com/instant-pot-red-braised-pork-belly/",
-    "query": "red braised pork belly instant pot recipe"
-  },
-  "Xiao long bao": {
-    "url": "https://thewoksoflife.com/steamed-shanghai-soup-dumplings-xiaolongbao/",
-    "query": "xiao long bao recipe woks of life"
-  },
   "Oyakodon": {
     "url": "https://www.justonecookbook.com/oyakodon/",
     "query": "oyakodon recipe just one cookbook"
@@ -66,10 +54,6 @@
   "Japanese chicken curry": {
     "url": "https://www.justonecookbook.com/pressure-cooker-japanese-curry/",
     "query": "instant pot japanese curry just one cookbook"
-  },
-  "Tonkotsu ramen": {
-    "url": "https://doobydobap.com/recipe/tonkotsu-ramen",
-    "query": "tonkotsu ramen recipe serious eats"
   },
   "Kimchi fried rice": {
     "url": "https://www.maangchi.com/recipe/kimchi-bokkeumbap",
@@ -84,7 +68,7 @@
     "query": "Korean fried chicken recipe maangchi"
   },
   "Pad kra pao": {
-    "url": "https://hot-thai-kitchen.com/pad-kra-pao-anything/",
+    "url": "https://www.eatingthaifood.com/thai-basil-chicken-recipe-pad-kra-pao-gai/",
     "query": "pad kra pao recipe hot thai kitchen"
   },
   "Thai green curry": {
@@ -100,7 +84,7 @@
     "query": "Vietnamese lemongrass chicken recipe hungry huy"
   },
   "Goi cuon": {
-    "url": "https://www.hungryhuy.com/how-to-make-goi-cuon-vietnamese-spring-rolls/",
+    "url": "https://www.loveandlemons.com/fresh-spring-rolls/",
     "query": "Vietnamese spring rolls recipe hungry huy"
   },
   "Pho bo": {
@@ -163,17 +147,9 @@
     "url": "https://chrysolefou.com/en/recipes/moutzentra",
     "query": "moutzentra recipe Cyprus lentils rice"
   },
-  "Sheftalia": {
-    "url": "https://www.sbs.com.au/food/recipe/cypriot-sausages-sheftalia/83eik44gv",
-    "query": "sheftalia recipe serious eats"
-  },
   "Smorrebrod": {
     "url": "https://www.epicurious.com/recipes/food/views/smoked-salmon-smorrebrod-104397",
     "query": "smorrebrod recipe serious eats"
-  },
-  "Swedish meatballs": {
-    "url": "https://www.recipetineats.com/swedish-meatballs/",
-    "query": "Swedish meatballs recipe recipetineats"
   },
   "Danish pastries": {
     "url": "https://www.kingarthurbaking.com/recipes/danish-pastry-recipe",
@@ -191,18 +167,6 @@
     "url": "https://polishhousewife.com/pierogi-ruski/",
     "query": "pierogi recipe polish housewife"
   },
-  "Bratwurst with sauerkraut": {
-    "url": "https://theforkedspoon.com/bratwurst-and-sauerkraut/",
-    "query": "bratwurst sauerkraut recipe daring gourmet"
-  },
-  "Rouladen": {
-    "url": "https://www.quick-german-recipes.com/rouladen-recipe.html",
-    "query": "instant pot rouladen recipe"
-  },
-  "Schweinshaxe": {
-    "url": "https://www.recipetineats.com/crispy-german-pork-knuckle-schweinshaxe-with-beer-gravy/",
-    "query": "German pork knuckle recipe recipetineats"
-  },
   "Pan con tomate": {
     "url": "https://www.bonappetit.com/recipe/pan-con-tomate",
     "query": "pan con tomate recipe serious eats"
@@ -219,10 +183,6 @@
     "url": "https://smittenkitchen.com/2017/10/quick-pasta-and-chickpeas-pasta-e-ceci/",
     "query": "pasta e ceci recipe smitten kitchen"
   },
-  "Ragu bolognese": {
-    "url": "https://www.bbcgoodfoodme.com/recipes/slow-cooker-spaghetti-bolognese/",
-    "query": "slow cooker bolognese recipetineats"
-  },
   "Neapolitan-style pizza": {
     "url": "https://recipes.frescocooks.com/en-US/8844-serious-eats-neapolitan-pizza",
     "query": "Neapolitan pizza recipe serious eats"
@@ -230,10 +190,6 @@
   "Omelette with herbs": {
     "url": "https://www.foodnetwork.com/fnk/recipes/classic-french-omelette-7151447",
     "query": "French omelette recipe serious eats"
-  },
-  "Beef bourguignon": {
-    "url": "https://www.foodnetwork.com/recipes/food-network-kitchen/slow-cooker-beef-bourguignon-23028763",
-    "query": "slow cooker beef bourguignon recipe"
   },
   "Croissant": {
     "url": "https://www.kingarthurbaking.com/recipes/bakers-croissants-recipe",
@@ -263,14 +219,6 @@
     "url": "https://heygrillhey.com/texas-style-smoked-beef-brisket/",
     "query": "Texas smoked brisket recipe hey grill hey"
   },
-  "Split pea soup": {
-    "url": "https://cuisineravecmicheline.com/en/instant-pot-quebec-pea-soup/",
-    "query": "French Canadian pea soup instant pot recipe"
-  },
-  "Tourtiere": {
-    "url": "https://www.gg.ca/en/tourtiere-recipe",
-    "query": "tourtiere recipe seasons and suppers"
-  },
   "Poutine": {
     "url": "https://www.seasonsandsuppers.ca/authentic-canadian-poutine-recipe/",
     "query": "poutine recipe seasons and suppers"
@@ -278,10 +226,6 @@
   "Chicken tinga": {
     "url": "https://alexandracooks.com/2020/09/11/instant-pot-chicken-tinga/",
     "query": "instant pot chicken tinga recipe pinch of yum"
-  },
-  "Carnitas": {
-    "url": "https://www.recipetineats.com/pork-carnitas-mexican-slow-cooker-pulled-pork/",
-    "query": "carnitas slow cooker recipetineats"
   },
   "Mole poblano": {
     "url": "https://patijinich.com/mole_poblano_de_los_angeles/",
@@ -323,14 +267,6 @@
     "url": "https://www.laylita.com/recipes/empanadas-mendocinas/",
     "query": "Argentinian beef empanadas recipe laylita"
   },
-  "Chivito": {
-    "url": "https://www.curiouscuisiniere.com/chivito/",
-    "query": "chivito recipe curious cuisiniere"
-  },
-  "Choripan": {
-    "url": "https://www.laylita.com/recetas/choripan/",
-    "query": "choripan recipe laylita"
-  },
   "Chaja": {
     "url": "https://elgourmet.com/recetas/chaja-uruguayo/pdf",
     "query": "chaja dessert recipe Uruguay"
@@ -367,8 +303,72 @@
     "url": "https://boliviancookbook.com/2013/05/10/papas-a-la-huancaina/",
     "query": "Bolivian papas a la huancaina peanut recipe"
   },
-  "Saltenas": {
-    "url": "https://elgourmet.com/recetas/saltenas-bolivianas/pdf",
-    "query": "Bolivian saltenas recipe"
+  "Galinhada": {
+    "url": "https://www.oliviascuisine.com/galinhada/",
+    "query": "recipe Galinhada"
+  },
+  "Chinese beef and daikon stew": {
+    "url": "https://www.pressurecookrecipes.com/instant-pot-Chinese-beef-stew/",
+    "query": "recipe Chinese beef and daikon stew"
+  },
+  "Scallion pancakes": {
+    "url": "https://thewoksoflife.com/shanghai-scallion-pancakes/",
+    "query": "recipe Scallion pancakes"
+  },
+  "Vegetarian miso ramen": {
+    "url": "https://www.justonecookbook.com/vegetarian-ramen/",
+    "query": "recipe Vegetarian miso ramen"
+  },
+  "Lamb kleftiko": {
+    "url": "https://www.mygreekdish.com/recipe/lamb-kleftiko-recipe-greek-lamb-cooked-in-parchment-paper/",
+    "query": "recipe Lamb kleftiko"
+  },
+  "Hasselback potatoes": {
+    "url": "https://www.swedishfood.com/sides/hasselback-potatoes",
+    "query": "recipe Hasselback potatoes"
+  },
+  "Kartoffelpuffer": {
+    "url": "https://www.daringgourmet.com/traditional-kartoffelpuffer-reibekuchen-german-potato-pancakes/",
+    "query": "recipe Kartoffelpuffer"
+  },
+  "Spaetzle": {
+    "url": "https://www.daringgourmet.com/homemade-german-spaetzle/",
+    "query": "recipe Spaetzle"
+  },
+  "Sauerbraten (beef, no bacon)": {
+    "url": "https://www.daringgourmet.com/authentic-german-sauerbraten/",
+    "query": "recipe Sauerbraten (beef, no bacon)"
+  },
+  "Vegetarian split pea soup": {
+    "url": "https://www.noracooks.com/vegan-split-pea-soup/",
+    "query": "recipe Vegetarian split pea soup"
+  },
+  "Butter tarts": {
+    "url": "https://www.kingarthurbaking.com/recipes/classic-butter-tarts-recipe",
+    "query": "recipe Butter tarts"
+  },
+  "Beef barbacoa": {
+    "url": "https://www.recipetineats.com/beef-barbacoa/",
+    "query": "recipe Beef barbacoa"
+  },
+  "Faina": {
+    "url": "https://www.196flavors.com/faina/",
+    "query": "recipe Faina"
+  },
+  "Arroz con leche": {
+    "url": "https://www.telenoche.com.uy/canal-4/como-hacer-arroz-leche-asi-lo-prepara-marcelo-bornio-n5361251",
+    "query": "recipe Arroz con leche"
+  },
+  "Ratatouille": {
+    "url": "https://www.recipetineats.com/ratatouille/",
+    "query": "recipe Ratatouille"
+  },
+  "Spaghetti aglio e olio": {
+    "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/",
+    "query": "recipe Spaghetti aglio e olio"
+  },
+  "Humintas": {
+    "url": "https://boliviancookbook.com/2016/10/05/humintas-a-la-olla/",
+    "query": "recipe Humintas"
   }
 }
