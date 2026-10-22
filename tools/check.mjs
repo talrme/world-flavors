@@ -44,7 +44,7 @@ async function run(variant,mobile){
  await page.locator('[data-view="all"]').click();await page.locator('#method').selectOption('instant');assert((await page.locator('#result-count').textContent()).startsWith('13'),'13 specific Instant Pot recipes');
  await page.locator('#method').selectOption('slow');assert((await page.locator('#result-count').textContent()).startsWith('4'),'4 specific slow cooker recipes');
  await page.locator('#method').selectOption('all');await page.locator('#country').click();
- await page.locator('[data-action="clear-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('0 '),'Clear all shows no dishes');
+ await page.locator('#modal [data-action="clear-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('0 '),'Clear all shows no dishes');
  await page.locator('[data-country-check="Germany"]').check();await page.locator('[data-country-check="Japan"]').check();
  assert((await page.locator('#result-count').textContent()).startsWith('6 '),'Two countries combine results');
  assert(await page.locator('[data-region-check="europe"]').evaluate(el=>el.indeterminate),'Europe shows mixed state');
@@ -60,9 +60,9 @@ async function run(variant,mobile){
  await page.locator('[data-region-check="north-america"]').check();assert((await page.locator('#result-count').textContent()).startsWith('39 '),'North America adds only its five entries');
  await page.locator('[data-region-check="south-america"]').check();assert((await page.locator('#result-count').textContent()).startsWith('57 '),'South America adds its six entries independently');
  await page.locator('[data-region-check="africa"]').check();assert((await page.locator('#result-count').textContent()).startsWith('66 '),'Africa adds nine dishes');
- await page.locator('[data-action="select-all-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('93 '),'Select all restores all dishes');
+ await page.locator('#modal [data-action="select-all-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('93 '),'Select all restores all dishes');
  await page.locator('[data-country-check="Germany"]').uncheck();assert((await page.locator('#result-count').textContent()).startsWith('90 '),'Deselect one from all');
- await page.locator('[data-action="clear-countries"]').click();await page.locator('[data-country-check="Germany"]').check();await close(page);
+ await page.locator('#modal [data-action="clear-countries"]').click();await page.locator('[data-country-check="Germany"]').check();await close(page);
  assert(await page.locator('[data-open]').count()===3,'Country filtering works');
  assert(await page.locator('.wheel-aside .country-sector.active').count()===1,'Selected country highlights wheel');
  await page.locator('[data-action="wheel"]:visible').first().click();
@@ -88,12 +88,12 @@ async function run(variant,mobile){
  await page.screenshot({path:fileURLToPath(new URL(`test-results/wheel-${mobile?'phone':'desktop'}.png`,root))});
  await page.locator('#modal [data-wheel-country="India"]').click({force:true});await page.waitForTimeout(220);
  assert(await page.locator('#country-summary').textContent()==='India','Wheel sector focuses country');
- await page.locator('[data-action="wheel"]:visible').first().click();await page.locator('[data-wheel-multi]').check();
+ await page.locator('[data-action="wheel"]:visible').first().click();await page.locator('#modal [data-wheel-multi]').check();
  await page.locator('#modal [data-action="clear-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('0 '),'Wheel clear all selects none');
  await page.locator('#modal [data-wheel-country="Germany"]').click({force:true});assert(await page.locator('#modal').isVisible(),'Multi-select leaves wheel open');
  await page.locator('#modal [data-wheel-country="Japan"]').focus();await page.keyboard.press('Space');
  assert((await page.locator('#result-count').textContent()).startsWith('6 '),'Wheel multi-select combines countries');
- assert(await page.locator('#wheel-count').textContent()==='2 selected','Wheel selection count updates');
+ assert(await page.locator('#modal [data-wheel-count]').textContent()==='2 selected','Wheel selection count updates');
  await page.waitForTimeout(600);await page.screenshot({path:fileURLToPath(new URL(`test-results/wheel-multi-${mobile?'phone':'desktop'}.png`,root))});
  await page.locator('#modal [data-wheel-country="Germany"]').focus();await page.keyboard.press('Enter');assert((await page.locator('#result-count').textContent()).startsWith('3 '),'Wheel can deselect a country');
  assert(await page.locator('#modal .dial-center-detail').textContent()==='Not selected','Deselection status is explicit while previewing');
@@ -105,11 +105,11 @@ async function run(variant,mobile){
  assert(removedFill===unselectedFill,'Hover/focus does not make a deselected slice look selected');
  await page.screenshot({path:fileURLToPath(new URL(`test-results/wheel-deselected-${mobile?'phone':'desktop'}.png`,root))});
  for(let repeat=0;repeat<3;repeat++){await page.keyboard.press('Enter');await page.keyboard.press('Enter');}
- assert(await page.locator('#wheel-count').textContent()==='1 selected','Rapid repeated toggles stay consistent');
+ assert(await page.locator('#modal [data-wheel-count]').textContent()==='1 selected','Rapid repeated toggles stay consistent');
  await page.locator('#modal [data-action="select-all-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('93 '),'Wheel select all restores all dishes');
- await page.locator('[data-wheel-multi]').uncheck();await page.locator('#modal .wheel-bulk [data-action="close"]').click();await page.waitForTimeout(220);assert(await page.locator('#modal').isHidden(),'Wheel Done closes modal');
+ await page.locator('#modal [data-wheel-multi]').uncheck();await page.locator('#modal .wheel-bulk [data-action="close"]').click();await page.waitForTimeout(220);assert(await page.locator('#modal').isHidden(),'Wheel Done closes modal');
  assert(await page.locator('.dish-row').first().evaluate(el=>getComputedStyle(el).backgroundColor==='rgba(0, 0, 0, 0)'),'No rectangular row highlight remains after a wheel selection');
- await page.locator('#country').click();await page.locator('[data-action="select-all-countries"]').click();await close(page);
+ await page.locator('#country').click();await page.locator('#modal [data-action="select-all-countries"]').click();await close(page);
  await page.locator('[data-action="settings"]').click();
  for(const theme of ['night','garden','cherry','original']){
   await page.locator(`[data-theme="${theme}"]`).click();assert(await page.locator('body').getAttribute('data-theme')===theme,'Immediate theme switch');
@@ -135,6 +135,18 @@ async function run(variant,mobile){
  await page.reload();await page.locator('[data-open]').first().waitFor();assert(await page.locator('.country-flavors').first().isHidden(),'Flavor preference persists');
  await page.locator('[data-flavor-country="Argentina"]').click();assert((await page.locator('.flavor-note-list').textContent()).includes('Paprika'),'Country click shows full flavor notes even when inline notes hidden');await close(page);
  await page.locator('[data-action="settings"]').click();await page.locator('[data-pref="flavors"]').check();await close(page);assert(await page.locator('.country-flavors').first().isVisible(),'Inline notes can be restored');
+ if(!mobile){
+  await page.locator('.wheel-aside [data-wheel-multi]').check();await page.locator('.wheel-aside [data-action="clear-countries"]').click();
+  await page.locator('.wheel-aside [data-wheel-country="Germany"]').click({force:true});await page.locator('.wheel-aside [data-wheel-country="Japan"]').focus();await page.keyboard.press('Space');
+  assert((await page.locator('#result-count').textContent()).startsWith('6 '),'Small wheel multi-select combines countries');
+  assert(await page.locator('.wheel-aside [data-wheel-count]').textContent()==='2 selected','Small wheel count updates');
+  assert(await page.locator('.wheel-aside .flavor-dial').getAttribute('data-multi')==='true','Small wheel uses stable multi-select styling');
+  await page.locator('.wheel-aside [data-wheel-country="Germany"]').focus();await page.keyboard.press('Enter');assert((await page.locator('#result-count').textContent()).startsWith('3 '),'Small wheel deselects');
+  await page.locator('.wheel-aside [data-action="wheel"]').click();assert(await page.locator('#modal [data-wheel-multi]').isChecked(),'Enlarged wheel inherits inline mode');
+  await page.locator('#modal [data-wheel-multi]').uncheck();assert(!await page.locator('.wheel-aside [data-wheel-multi]').isChecked(),'Mode stays synced both directions');await close(page);
+  await page.locator('.wheel-aside [data-wheel-multi]').check();await page.locator('.wheel-aside [data-action="select-all-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('93 '),'Small wheel selects all');
+  await page.mouse.move(0,0);await page.waitForTimeout(300);await page.screenshot({path:fileURLToPath(new URL('test-results/small-wheel-multi-desktop.png',root))});
+ }
  checks.push({variant,viewport:mobile?'phone 390 + 320':'desktop 1440',status:'passed'});await context.close();
 }
 try{for(let variant=1;variant<=1;variant++)for(const mobile of [true,false]){try{await run(variant,mobile)}catch(error){failures.push({variant,mobile,error:error.stack});console.error(variant,mobile,error.message)}}}finally{await browser.close()}

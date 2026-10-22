@@ -30,7 +30,7 @@
 .wheel-heading{margin-bottom:20px}.wheel-aside{top:24px}.wheel-actions{margin-top:7px}
 .wheel-controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:8px 0 2px}
 .wheel-mode{border:0;padding:4px 0;gap:12px;font-size:12px;min-height:36px}
-#wheel-count{font-size:11px;color:var(--muted)}
+.wheel-count{font-size:11px;color:var(--muted)}
 .wheel-bulk{display:flex;align-items:center;gap:20px;border-top:1px solid var(--line);padding-top:12px}
 .wheel-bulk .text-action{color:var(--accent)}
 .wheel-bulk .primary{margin-left:auto;min-width:85px;min-height:38px;padding:7px 16px}

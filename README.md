@@ -16,7 +16,7 @@ The Countries / regions picker supports any combination of countries, Select all
 
 ## Food preferences and sources
 
-The enlarged wheel includes a Multi-select switch (off initially). With it on, mouse/touch clicks or Enter/Space toggle individual countries and leave the wheel open; Done closes it. Select all includes all 31 entries, while Clear all selects none. The picker and wheel share the same selection. With Multi-select off, a sector focuses one country and closes the wheel as before. The mode is remembered for the current visit only.
+Both the small inline wheel and enlarged wheel include a synchronized Multi-select switch (off initially). With it on, mouse/touch clicks or Enter/Space toggle individual countries and leave the wheel open; Done closes it. Select all includes all 31 entries, while Clear all selects none. The picker and wheel share the same selection. With Multi-select off, a sector focuses one country and closes the wheel as before. The mode is remembered for the current visit only.
 
 Multi-select uses stable selected colors and a gentle fade when removing a country. Hover still previews flag and spices without making a deselected slice look selected; the moving outline is reserved for single-select mode.
 

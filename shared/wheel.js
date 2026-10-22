@@ -30,7 +30,7 @@ export function highlightWheel(country,animate=true,selection=new Set(countries)
  const index=ordered.findIndex(c=>c.country===country);
  document.querySelectorAll('.flavor-dial').forEach(dial=>{
   const active=index>=0;
-  const multi=multiSelect&&!!dial.closest('#modal');dial.dataset.multi=String(multi);
+  const multi=multiSelect;dial.dataset.multi=String(multi);
   dial.querySelectorAll('.country-sector').forEach(g=>{const selected=g.dataset.dialCountry===country;g.classList.toggle('active',selected);g.classList.toggle('is-chosen',selection.has(g.dataset.dialCountry));g.classList.toggle('in-filter',selection.size<countries.length&&selection.has(g.dataset.dialCountry));g.querySelector('path').setAttribute('aria-pressed',selection.has(g.dataset.dialCountry));});
   dial.querySelector('.dial-center-label').textContent=active?(labels[country]||country):selection.size===countries.length?'A world of flavor':selection.size?selection.size+' places selected':'Choose a country';
   dial.querySelector('.dial-center-detail').textContent=active?(multi?(selection.has(country)?'Selected · 3 dishes':'Not selected'):'3 dishes to discover'):selection.size===countries.length?'31 countries & regions':selection.size*3+' dishes to discover';
