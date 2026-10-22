@@ -1,7 +1,7 @@
 import {chromium} from 'playwright';
 import fs from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
-import {dishes,countries} from '../shared/data.js';
+import {dishes,countries,regions} from '../shared/data.js';
 import {flavors} from '../shared/flavors.js';
 const root=new URL('../',import.meta.url);
 const browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
@@ -22,6 +22,21 @@ async function run(variant,mobile){
  const firstDish=await page.locator('[data-open]').first().boundingBox();assert(!mobile||firstDish.y<450,'Dishes appear high in the phone viewport');
  assert((await page.locator('#result-count').textContent()).startsWith('93'),'93 dishes initially');
  assert(await page.locator('[data-open]').count()===24,'24 initial dishes');
+ const regionNames=new Map(regions.flatMap(([name,,items])=>items.map(c=>[c,name])));
+ const rank={'Easy':0,'Easy-medium':1,'Medium':2,'Medium-hard':3,'Hard':4};
+ const value=(d,key)=>key==='continent'?regionNames.get(d.country):key==='difficulty'?rank[d.difficulty]??5:key==='approach'?Number(!d.isHome):d[key];
+ const compare=(a,b,key)=>key==='none'?0:typeof value(a,key)==='number'?value(a,key)-value(b,key):value(a,key).localeCompare(value(b,key));
+ for(const [primary,secondary] of [['country','active'],['continent','country'],['continent','active'],['active','name'],['name','none'],['difficulty','active'],['approach','active']]){
+  await page.locator('#sort').selectOption(primary);await page.locator('#sort-secondary').selectOption(secondary);
+  const expected=[...dishes].sort((a,b)=>compare(a,b,primary)||compare(a,b,secondary)||a.name.localeCompare(b.name)||a.country.localeCompare(b.country)).slice(0,24).map(d=>d.id);
+  const actual=await page.locator('[data-open]').evaluateAll(nodes=>nodes.map(el=>el.dataset.open));
+  assert(JSON.stringify(actual)===JSON.stringify(expected),'Visible ordering: '+primary+' then '+secondary);
+ }
+ await page.locator('#sort').selectOption('continent');await page.locator('#sort-secondary').selectOption('active');
+ assert(await page.locator('#sort').isVisible()&&await page.locator('#sort-secondary').isVisible(),'Both sort controls available on phones and desktop');
+ await page.screenshot({path:fileURLToPath(new URL(`test-results/sort-${mobile?'phone':'desktop'}.png`,root))});
+ await page.locator('#sort').selectOption('active');assert(await page.locator('#sort-secondary').inputValue()==='none','Duplicate secondary sort resets to None');
+ await page.locator('#sort').selectOption('country');await page.locator('#sort-secondary').selectOption('name');
  let width=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth}));
  assert(width.scroll<=width.width+1,`Horizontal overflow ${JSON.stringify(width)}`);
  await page.locator('[data-action="more"]').click();assert(await page.locator('[data-open]').count()===48,'Pagination shows 48');

@@ -6,6 +6,8 @@ A food explorer inspired by Tal's World of Flavor photo. The selected Field Note
 
 ## Explore
 
+Sort by Country, Continent, Dish name, Active prep time (shortest first), Difficulty (easiest first), or Cook / order (home cooking first), with an optional Then by tie-breaker. Defaults remain Country then Dish name. Both controls are available on phones. Continent sorting adds continent headings; non-country sorts preserve the actual dish order instead of regrouping it by country. Sorting applies for the current visit and combines with every filter.
+
 The page opens directly into the compact header, filters and country lists, without an introductory title, subtitle or dish tally.
 
 93 dishes across 31 countries and regional entries, with 64 home-cooking suggestions and 29 restaurant-first picks. Search by ingredient, dish or country; filter cooking method; bookmark dishes you **Want to try**; mark dishes tried; and keep personal notes. Use the Want to try tab to see your shortlist. Existing bookmarks are preserved.
