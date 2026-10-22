@@ -6,7 +6,7 @@ A food explorer inspired by Tal's World of Flavor photo. The selected Field Note
 
 ## Explore
 
-93 dishes across 31 countries and regional entries, with 64 home-cooking suggestions and 29 restaurant-first picks. Search by ingredient, dish or country; filter cooking method; save favorites; mark dishes tried; and keep personal notes.
+93 dishes across 31 countries and regional entries, with 64 home-cooking suggestions and 29 restaurant-first picks. Search by ingredient, dish or country; filter cooking method; bookmark dishes you **Want to try**; mark dishes tried; and keep personal notes. Use the Want to try tab to see your shortlist. Existing bookmarks are preserved.
 
 The circular flavor wheel has separate country sectors, continent bands, keyboard/touch selection, and a smoothly moving highlight. Hovering a dish highlights its country. Tap a country to filter the list. On phones the wheel opens from the Flavor wheel button; on desktop it is also beside the list. Your original photographed wheel is available through Original photo in the wheel dialog.
 
@@ -24,7 +24,7 @@ Download the current [food table CSV](assets/world-of-flavor.csv). Regional exam
 
 Original, Night, Garden and Cherry themes apply immediately. Compact rows, wheel visibility and animations are saved on this device. Reduced-motion system preferences are respected.
 
-Saved/tried dishes, notes and settings use browser localStorage (`world-flavors-v1`). Existing staging preferences and unchanged-dish journals are preserved on the same origin. No login or backend; nothing syncs across phones.
+The Want to try list, tried dishes, notes and settings use browser localStorage (`world-flavors-v1`). Existing staging preferences and unchanged-dish journals are preserved on the same origin. No login or backend; nothing syncs across phones. Clearing browser site data removes the local list. Marking something tried does not automatically remove it from Want to try.
 
 Centered solid dialogs close with the rotating X, Escape or a tap outside. Notes save as you type. Save / Share includes iPhone and Android home-screen instructions and the main website URL.
 

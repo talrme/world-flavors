@@ -32,6 +32,14 @@ Phone first; simple header, footer settings, immediate theme updates, modern tog
 
 Use `world-flavors-v1` localStorage for journal and preferences, shared with previous staging pages on the same origin. No account or cross-device sync. Do not rerender a focused note textarea while saving it.
 
+## Want to Try and Future Backend
+
+The visible bookmark action and collection are named **Want to try**. They reuse the existing journal's `saved` boolean under `world-flavors-v1` localStorage, so previously bookmarked dishes remain selected without migration. The list is independent of `tried`: marking a dish tried does not silently remove it. Users can toggle either action off. Notes, tried status and preferences must survive bookmark changes and reloads.
+
+There is no backend yet. Data is browser/origin-local; it does not sync between devices, private sessions or localhost and GitHub Pages. Clearing site storage removes it. Keep the current storage key and stable dish IDs intact.
+
+For a later simple backend, a Google Sheet + Apps Script could store one journal row per board/user and stable dish ID, with columns `boardId, dishId, wantToTry, tried, notes, updatedAt`. Map local `saved` to backend `wantToTry` at the storage boundary. Keep appearance preferences local. Agree on shared-board URLs and access/privacy before enabling public writes. Import existing local data explicitly and merge by ID; never overwrite populated remote records with an empty local journal. Retain optimistic local updates and a retryable pending-write queue, confirming server success before clearing it. No backend is configured or promised by this change.
+
 ## Verification
 
 Run `tools/check.mjs` with a running HTTP preview (port 5178). Check 390x844, 320px and 1440px widths, no overflow, all themes, modal dismissal, search/filters, persistence, 31 clickable wheel sectors, round geometry, keyboard selection, animation and root install manifest. Inspect screenshots, including night mode and phone wheel. Maintain README alongside behavior changes.

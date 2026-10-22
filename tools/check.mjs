@@ -30,6 +30,13 @@ async function run(variant,mobile){
  await page.locator('#search').fill('');await page.locator('[data-view="saved"]').click();assert(await page.locator('[data-open]').count()===1,'Saved dishes work');
  await page.reload();await page.locator('[data-open]').first().waitFor();await page.locator('[data-view="saved"]').click();assert(await page.locator('[data-open]').count()===1,'Bookmarks persist');
  await page.locator('[data-open]').click();assert(await page.locator('#dish-note').inputValue()==='Try with Sophie. Extra lime.','Notes persist');
+ assert(await page.locator('.detail-choices [data-save]').textContent()==='On your try list','Dish shows persisted Want to try state');
+ const savedId=await page.locator('.detail-choices [data-save]').getAttribute('data-save');
+ await close(page);assert(await page.locator('[data-view="saved"]').textContent()==='Want to try','Want to try tab label');
+ assert(await page.locator('#results-title').textContent()==='Want to try','Want to try collection title');
+ await page.locator('#result-area [data-save]').click();assert(await page.locator('.empty-state').isVisible(),'Remove from Want to try works');
+ const entry=await page.evaluate(id=>JSON.parse(localStorage.getItem('world-flavors-v1')).journal[id],savedId);
+ assert(entry.saved===false&&entry.tried===true&&entry.notes==='Try with Sophie. Extra lime.','Removing bookmark preserves tried status and notes');
  await close(page);await page.locator('[data-view="tried"]').click();assert(await page.locator('[data-open]').count()===1,'Tried list works');
  await page.locator('[data-view="all"]').click();await page.locator('#method').selectOption('instant');assert((await page.locator('#result-count').textContent()).startsWith('13'),'13 specific Instant Pot recipes');
  await page.locator('#method').selectOption('slow');assert((await page.locator('#result-count').textContent()).startsWith('4'),'4 specific slow cooker recipes');
