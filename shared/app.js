@@ -1,12 +1,13 @@
 import {dishes,countries,flags,regions} from './data.js?v=20261022-multi';
-import {wheelMarkup as circularWheel,highlightWheel} from './wheel.js?v=20261022-multi';
+import {flavors} from './flavors.js?v=20261022-flavors';
+import {wheelMarkup as circularWheel,highlightWheel} from './wheel.js?v=20261022-flavors';
 
 const base = new URL('../',import.meta.url);
 const asset = file=>new URL(file,base).href;
 const storage='world-flavors-v1';
 const read=()=>{try{return JSON.parse(localStorage.getItem(storage)||'{}')}catch{return {}}};
 const saved=read();
-let prefs={theme:'original',compact:false,motion:true,wheel:true,...saved.prefs};
+let prefs={theme:'original',compact:false,motion:true,wheel:true,flavors:true,...saved.prefs};
 let journal=saved.journal||{};
 let selectedCountries=new Set(countries);
 let view='all',query='',method='all',sort='country',selected='',pageLimit=24;
@@ -17,7 +18,7 @@ const $=s=>document.querySelector(s);
 const all=s=>[...document.querySelectorAll(s)];
 const persist=()=>{try{localStorage.setItem(storage,JSON.stringify({prefs,journal}))}catch{toast('This browser could not save your preferences.')}};
 const badges=d=>`<span class="badge ${d.isHome?'home':'order'}">${icon(d.isHome?'cooking-pot':'shopping-bag',13)}${d.isHome?'Cook at home':'Order out'}</span>${d.ipRecipe||d.slowRecipe?`<span class="badge appliance">${icon('timer',13)}${d.ipRecipe?'Instant Pot':'Slow cooker'}</span>`:''}`;
-function applyPrefs(){document.body.dataset.theme=prefs.theme;document.body.classList.toggle('compact',prefs.compact);document.body.classList.toggle('still',!prefs.motion);document.body.classList.toggle('no-wheel',!prefs.wheel);const meta=$('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(document.body).getPropertyValue('--bg').trim();}
+function applyPrefs(){document.body.dataset.theme=prefs.theme;document.body.classList.toggle('compact',prefs.compact);document.body.classList.toggle('still',!prefs.motion);document.body.classList.toggle('no-wheel',!prefs.wheel);document.body.classList.toggle('hide-flavors',!prefs.flavors);const meta=$('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(document.body).getPropertyValue('--bg').trim();}
 function refreshIcons(){window.lucide?.createIcons({attrs:{'stroke-width':1.7}})}
 function displayCountry(c){return c==='Mediterranean (Levant examples)'?'Mediterranean / Levant':c}
 function resultList(){return dishes.filter(d=>{
@@ -56,7 +57,7 @@ function renderResults(){
  {
   area.className='country-list';
   const grouped=new Map();visible.forEach(d=>{if(!grouped.has(d.country))grouped.set(d.country,[]);grouped.get(d.country).push(d)});
-  area.innerHTML=[...grouped].map(([c,ds])=>`<section class="country-group"><header class="country-heading"><span class="country-flag">${flags[c]||'🌍'}</span><div><h3>${e(displayCountry(c))}</h3></div><button class="icon-button" data-country-choice="${e(c)}" title="Focus this country" aria-label="Focus ${e(displayCountry(c))}">${icon('arrow-up-right',17)}</button></header>${ds.map(row).join('')}</section>`).join('');
+  area.innerHTML=[...grouped].map(([c,ds])=>`<section class="country-group"><header class="country-heading"><span class="country-flag">${flags[c]||'🌍'}</span><div class="country-title"><h3><button class="country-info-button" data-flavor-country="${e(c)}" aria-label="Flavor notes for ${e(displayCountry(c))}">${e(displayCountry(c))}</button></h3><p class="country-flavors">${e((flavors[c]||[]).slice(0,4).join(' · '))}</p></div><button class="icon-button" data-country-choice="${e(c)}" title="Focus this country" aria-label="Focus ${e(displayCountry(c))}">${icon('arrow-up-right',17)}</button></header>${ds.map(row).join('')}</section>`).join('');
  }
  $('#more-area').innerHTML=items.length>visible.length?`<button class="load-more" data-action="more">More dishes ${icon('chevron-down',16)}<small>${items.length-visible.length} more</small></button>`:'';
  highlight(dishes.find(d=>d.id===selected)?.country||singleCountry());refreshIcons();
@@ -72,8 +73,9 @@ function detail(id){const d=dishes.find(x=>x.id===id);if(!d)return;selected=id;h
 }
 function saveNote(){const el=$('#dish-note');if(!el)return;const id=el.dataset.note;journal[id]={...journal[id],notes:el.value};persist();}
 function toggleSaved(id){saveNote();journal[id]={...journal[id],saved:!journal[id]?.saved};persist();renderResults();if(modalKind==='dish'&&!$('#modal').hidden){all(`[data-save="${id}"]`).forEach(b=>{b.title=journal[id].saved?'Remove from want to try':'Want to try';b.setAttribute('aria-pressed',!!journal[id].saved);b.classList.toggle('selected',!!journal[id].saved);if(b.closest('.detail-choices'))b.innerHTML=`${icon('bookmark',17)}${journal[id].saved?'On your try list':'Want to try'}`;else b.setAttribute('aria-label',`${journal[id].saved?'Remove from want to try:':'Want to try:'} ${dishes.find(d=>d.id===id).name}`)});refreshIcons();}}
-function settings(){showModal('settings',`${modalHead('Settings')}<section class="settings-section"><h3>Color mood</h3><div class="theme-choices">${[['original','Original'],['night','Night'],['garden','Garden'],['cherry','Cherry']].map(([id,label])=>`<button data-theme="${id}" aria-pressed="${prefs.theme===id}"><span class="swatch ${id}"></span>${label}</button>`).join('')}</div></section><section class="settings-section">${[['wheel','Show flavor wheel'],['compact','Compact rows'],['motion','Little animations']].map(([id,label])=>`<label class="toggle"><span>${label}</span><input type="checkbox" data-pref="${id}" ${prefs[id]?'checked':''}><i aria-hidden="true"></i></label>`).join('')}</section><details class="advanced"><summary>More</summary><a href="${asset('assets/world-of-flavor.csv')}" download>Download food table (CSV)</a><button data-action="reset-preferences" class="text-action">Reset appearance</button></details><button class="primary" data-action="close">Done</button>`);}
+function settings(){showModal('settings',`${modalHead('Settings')}<section class="settings-section"><h3>Color mood</h3><div class="theme-choices">${[['original','Original'],['night','Night'],['garden','Garden'],['cherry','Cherry']].map(([id,label])=>`<button data-theme="${id}" aria-pressed="${prefs.theme===id}"><span class="swatch ${id}"></span>${label}</button>`).join('')}</div></section><section class="settings-section">${[['wheel','Show flavor wheel'],['flavors','Show country flavor notes'],['compact','Compact rows'],['motion','Little animations']].map(([id,label])=>`<label class="toggle"><span>${label}</span><input type="checkbox" data-pref="${id}" ${prefs[id]?'checked':''}><i aria-hidden="true"></i></label>`).join('')}</section><details class="advanced"><summary>More</summary><a href="${asset('assets/world-of-flavor.csv')}" download>Download food table (CSV)</a><button data-action="reset-preferences" class="text-action">Reset appearance</button></details><button class="primary" data-action="close">Done</button>`);}
 function showWheel(){saveNote();showModal('wheel',`${modalHead('The flavor wheel','EXPLORE BY COUNTRY')}${wheelMarkup()}<div class="wheel-actions"><button class="text-action" data-action="clear-country">${icon('globe',16)}Everywhere</button><a class="text-action" href="${asset('assets/flavor-wheel.webp')}" target="_blank" rel="noopener">${icon('maximize-2',16)}Original photo</a></div>`);highlight(dishes.find(d=>d.id===selected)?.country||singleCountry());}
+function countryFlavors(c){showModal('flavors',`${modalHead(displayCountry(c),'FLAVOR NOTES')}<p class="flavor-note-list">${e((flavors[c]||[]).join(' · '))}</p><p class="flavor-source">Herbs, spices and blends inspired by your original flavor wheel. A starting point, not a complete picture of the cuisine.</p><button class="primary" data-country-choice="${e(c)}">Explore dishes ${icon('arrow-right',17)}</button>`);}
 function share(){const url=window.location.href.split('#')[0];showModal('share',`${modalHead('Save / Share')}<section class="install-section"><img src="${asset('assets/food-icon.png')}" alt="" width="62" height="62"><div><h3>Save as an app</h3><p>Add World Flavors to your home screen.</p></div></section><div class="install-steps"><div><strong>iPhone / iPad</strong><p>Open in Safari, tap Share, then Add to Home Screen.</p></div><div><strong>Android</strong><p>In Chrome, open the menu and choose Add to Home screen or Install app.</p></div></div><hr><h3>Share World Flavors</h3><div class="share-row"><input id="share-link" readonly aria-label="Website link" value="${e(url)}"><button class="primary" data-action="copy">${icon('copy',17)}Copy link</button></div><p class="copy-feedback" role="status"></p>`);}
 let toastTimer;function toast(msg){$('#toast').textContent=msg;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,2400);}
 let sources={};
@@ -96,6 +98,7 @@ function bind(){
   if(target.dataset.tried){saveNote();const id=target.dataset.tried;journal[id]={...journal[id],tried:!journal[id]?.tried};persist();target.setAttribute('aria-pressed',!!journal[id].tried);target.classList.toggle('selected',!!journal[id].tried);target.innerHTML=`${icon('check',17)}${journal[id].tried?'Tried it':'Mark as tried'}`;renderResults();return}
   if(target.dataset.view){view=target.dataset.view;pageLimit=24;renderResults();return}
   if(target.dataset.theme){prefs.theme=target.dataset.theme;applyPrefs();persist();all('[data-theme]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.theme===prefs.theme));return}
+  if(target.dataset.flavorCountry){countryFlavors(target.dataset.flavorCountry);return}
   if(target.dataset.countryChoice){pickCountry(target.dataset.countryChoice);return}
   if(target.dataset.wheelCountry){pickCountry(target.dataset.wheelCountry);return}
   const action=target.dataset.action;
@@ -103,7 +106,7 @@ function bind(){
   if(action==='random'){const items=resultList();if(items.length)detail(items[Math.floor(Math.random()*items.length)].id);else toast('No matching dishes. Try another filter.');}
   if(action==='select-all-countries')setCountries(countries);if(action==='clear-countries')setCountries([]);if(action==='clear-country')pickCountry('');if(action==='reset-filters')resetFilters();
   if(action==='more'){pageLimit+=24;renderResults()}
-  if(action==='reset-preferences'){prefs={theme:'original',compact:false,motion:true,wheel:true};applyPrefs();persist();settings();}
+  if(action==='reset-preferences'){prefs={theme:'original',compact:false,motion:true,wheel:true,flavors:true};applyPrefs();persist();settings();}
   if(action==='copy'){try{if(!navigator.clipboard)throw new Error('Clipboard unavailable');await navigator.clipboard.writeText($('#share-link').value);$('.copy-feedback').textContent='Link copied!';}catch{$('#share-link').select();$('.copy-feedback').textContent='Select and copy the link above.';}}
  });
  document.addEventListener('keydown',ev=>{if(ev.key==='Escape')closeModal();if((ev.key==='Enter'||ev.key===' ')&&ev.target.matches('[data-wheel-country]')){ev.preventDefault();pickCountry(ev.target.dataset.wheelCountry)}if(ev.key==='Tab'&&!$('#modal').hidden){const focusable=[...$('#modal').querySelectorAll('button,a,input,textarea,select,summary')].filter(el=>!el.disabled&&el.getClientRects().length);if(!focusable.length)return;const first=focusable[0],last=focusable.at(-1);if(ev.shiftKey&&document.activeElement===first){ev.preventDefault();last.focus()}else if(!ev.shiftKey&&document.activeElement===last){ev.preventDefault();first.focus()}}});

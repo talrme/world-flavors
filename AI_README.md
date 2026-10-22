@@ -28,6 +28,10 @@ Do not alter unrelated dish IDs or overwrite saved user notes. Removed entries' 
 
 ## UX
 
+`shared/flavors.js` provides representative herbs, spices and blends for all 31 entries, based on the user's original wheel photo. Shared photographed sectors can share notes. Keep these framed as examples, not a definition of a country's entire cuisine. Inline headings show four notes by default; clicking the country name opens the full list. The locally persisted `prefs.flavors` boolean controls inline notes only. Wheel hover/focus always renders the full list in SVG text/tspans; use textContent to avoid injecting content. Preserve readable contrast, center-circle containment and reduced-motion behavior.
+
+Do not reintroduce full-row hover backgrounds: when a wheel modal closes, the stationary pointer can land on a dish, leaving a large rectangular highlight that looks like a stuck box. Dish-title color changes are sufficient. Avoid native SVG title tooltips on wheel sectors; custom center details replace them. Pointer focus should not leave rectangular SVG outlines, but keyboard users must retain the custom wedge-shaped focus stroke.
+
 Phone first; simple header, footer settings, immediate theme updates, modern toggle switches. Centered solid dialogs always dismiss on outside click, X or Escape. Close X rotates on hover. Use local Lucide icons. Wheel highlights animate by the shortest angular route and interrupt smoothly. Respect both the motion toggle and system reduced-motion preference.
 
 Use `world-flavors-v1` localStorage for journal and preferences, shared with previous staging pages on the same origin. No account or cross-device sync. Do not rerender a focused note textarea while saving it.

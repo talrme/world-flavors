@@ -15,6 +15,9 @@
 .dial-center{fill:var(--bg);stroke:var(--line);stroke-width:1}
 .dial-center-label{fill:var(--ink);font:27px Georgia,serif;pointer-events:none}
 .dial-center-detail{fill:var(--muted);font:13px Arial,sans-serif;pointer-events:none}
+.dial-center-spices{fill:var(--muted);font:18px Arial,sans-serif;pointer-events:none}
+.flavor-dial:focus,.country-sector path:focus{outline:none}
+.country-sector path:focus-visible{stroke:var(--ink);stroke-width:4}
 .dial-pointer{fill:var(--accent);opacity:0;transition:opacity .2s}
 .wheel-selection{text-align:center;font-size:20px;min-height:48px;display:grid;place-items:center;margin:9px 0 5px}
 .wheel-heading{margin-bottom:20px}.wheel-aside{top:24px}.wheel-actions{margin-top:7px}

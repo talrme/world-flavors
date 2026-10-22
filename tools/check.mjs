@@ -2,13 +2,14 @@ import {chromium} from 'playwright';
 import fs from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {dishes,countries} from '../shared/data.js';
+import {flavors} from '../shared/flavors.js';
 const root=new URL('../',import.meta.url);
 const browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
 const failures=[];const checks=[];
 function assert(condition,message){if(!condition)throw new Error(message)}
 const sources=JSON.parse(await fs.readFile(new URL('../shared/sources.json',import.meta.url),'utf8'));
 assert(dishes.length===93&&countries.length===31,'Keep 93 dishes across 31 entries');
-for(const country of countries)assert(dishes.filter(d=>d.country===country).length===3,'Three dishes per country');
+for(const country of countries){assert(dishes.filter(d=>d.country===country).length===3,'Three dishes per country');assert(flavors[country]?.length>=2,'Flavor notes for every country');}
 for(const dish of dishes){assert(sources[dish.original]?.url.startsWith('https://'),'Every dish has a source');assert(!/\\b(pork|bacon|ham|lard|chorizo)\\b/i.test(dish.ingredients),'No pork ingredients: '+dish.name);}
 await fs.mkdir(new URL('test-results/',root),{recursive:true});
 async function close(page){await page.keyboard.press('Escape');await page.waitForTimeout(220);}
@@ -66,6 +67,8 @@ async function run(variant,mobile){
  assert(await page.locator('#modal [data-wheel-country]').count()===31,'Every country has its own sector');
  await page.locator('#modal [data-wheel-country="Japan"]').focus();await page.waitForTimeout(600);
  assert(await page.locator('#modal .dial-center-label').textContent()==='Japan','Keyboard focus highlights country');
+ assert((await page.locator('#modal .dial-center-spices').textContent()).includes('Wasabi'),'Wheel shows country spices');
+ assert(await page.locator('.flavor-dial title').count()===0,'No native wheel tooltips linger');
  const before=await page.locator('#modal .dial-selection').getAttribute('d');
  await page.locator('#modal [data-wheel-country="Brazil"]').focus();await page.waitForTimeout(80);
  const during=await page.locator('#modal .dial-selection').getAttribute('d');await page.waitForTimeout(550);
@@ -74,6 +77,7 @@ async function run(variant,mobile){
  await page.screenshot({path:fileURLToPath(new URL(`test-results/wheel-${mobile?'phone':'desktop'}.png`,root))});
  await page.locator('#modal [data-wheel-country="India"]').click({force:true});await page.waitForTimeout(220);
  assert(await page.locator('#country-summary').textContent()==='India','Wheel sector focuses country');
+ assert(await page.locator('.dish-row').first().evaluate(el=>getComputedStyle(el).backgroundColor==='rgba(0, 0, 0, 0)'),'No rectangular row highlight remains after a wheel selection');
  await page.locator('#country').click();await page.locator('[data-action="select-all-countries"]').click();await close(page);
  await page.locator('[data-action="settings"]').click();
  for(const theme of ['night','garden','cherry','original']){
@@ -95,6 +99,11 @@ async function run(variant,mobile){
  await page.locator('[data-action="settings"]').click();await page.locator('[data-theme="night"]').click();await close(page);
  await page.locator('[data-action="wheel"]:visible').first().click();await page.waitForTimeout(650);await page.screenshot({path:fileURLToPath(new URL(`test-results/wheel-night-${mobile?'phone':'desktop'}.png`,root))});await close(page);
  assert(errors.length===0,`JavaScript errors: ${errors.join(',')}`);
+ await page.locator('[data-action="settings"]').click();await page.locator('[data-pref="flavors"]').uncheck();await close(page);
+ assert(await page.locator('.country-flavors').first().isHidden(),'Inline flavor toggle applies immediately');
+ await page.reload();await page.locator('[data-open]').first().waitFor();assert(await page.locator('.country-flavors').first().isHidden(),'Flavor preference persists');
+ await page.locator('[data-flavor-country="Argentina"]').click();assert((await page.locator('.flavor-note-list').textContent()).includes('Paprika'),'Country click shows full flavor notes even when inline notes hidden');await close(page);
+ await page.locator('[data-action="settings"]').click();await page.locator('[data-pref="flavors"]').check();await close(page);assert(await page.locator('.country-flavors').first().isVisible(),'Inline notes can be restored');
  checks.push({variant,viewport:mobile?'phone 390 + 320':'desktop 1440',status:'passed'});await context.close();
 }
 try{for(let variant=1;variant<=1;variant++)for(const mobile of [true,false]){try{await run(variant,mobile)}catch(error){failures.push({variant,mobile,error:error.stack});console.error(variant,mobile,error.message)}}}finally{await browser.close()}
