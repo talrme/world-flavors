@@ -14,6 +14,8 @@ The Countries / regions picker supports any combination of countries, Select all
 
 ## Food preferences and sources
 
+The wheel center shows the country's flag on hover or keyboard focus, with the food icon as a fallback for broader regions and the idle wheel.
+
 Country headings show subtle flavor notes from the original photographed wheel. Click a country name for the fuller list of herbs, spices and blends. Settings > Show country flavor notes hides the inline notes and saves that preference locally. Wheel hover and keyboard focus always show the country's spices, regardless of the inline setting. These are representative cues, not exhaustive cuisine definitions.
 
 The recommendations avoid pork. Seventeen entries were replaced, including the original pork dishes and recipes with less obvious cured-meat ingredients. Examples: beef barbacoa replaces carnitas, galinhada replaces feijoada, and vegetarian miso ramen replaces tonkotsu.

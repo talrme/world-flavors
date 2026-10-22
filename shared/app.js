@@ -1,6 +1,6 @@
 import {dishes,countries,flags,regions} from './data.js?v=20261022-multi';
 import {flavors} from './flavors.js?v=20261022-flavors';
-import {wheelMarkup as circularWheel,highlightWheel} from './wheel.js?v=20261022-flavors';
+import {wheelMarkup as circularWheel,highlightWheel} from './wheel.js?v=20261022-flags';
 
 const base = new URL('../',import.meta.url);
 const asset = file=>new URL(file,base).href;

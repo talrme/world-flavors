@@ -1,4 +1,4 @@
-import {countries,regions} from './data.js?v=20261022-multi';
+import {countries,regions,flags} from './data.js?v=20261022-multi';
 
 import {flavors} from './flavors.js?v=20261022-flavors';
 
@@ -22,7 +22,7 @@ export function wheelMarkup(iconURL){
  return `<div class="flavor-orbit"><svg class="flavor-dial" viewBox="0 0 760 760" aria-label="Explore cuisines by country"><circle class="dial-paper" cx="380" cy="380" r="359"/>${bands}${ordered.map(({country,tone},i)=>{
   const start=i*step,mid=start+step/2,flip=mid>180;
   return `<g class="country-sector ${tone}" data-dial-country="${escape(country)}"><path data-wheel-country="${escape(country)}" data-sector="${i}" role="button" tabindex="0" aria-label="Explore ${escape(country)}" aria-pressed="false" d="${wedge(243,350,start+.45,start+step-.45)}"></path><g transform="rotate(${mid} 380 380)"><text class="country-label" transform="translate(380 84) rotate(${flip?90:-90})" text-anchor="middle" dominant-baseline="middle">${labels[country]||country}</text></g></g>`;
- }).join('')}<path class="dial-selection" d="${wedge(241,353,.4,step-.4)}" opacity="0"/><circle class="dial-center" cx="380" cy="380" r="180"/><image href="${iconURL}" x="341" y="284" width="78" height="78"/><text class="dial-center-label" x="380" y="399" text-anchor="middle">A world of flavor</text><text class="dial-center-detail" x="380" y="429" text-anchor="middle">31 countries &amp; regions</text><text class="dial-center-spices" x="380" y="460" text-anchor="middle"></text><g class="dial-pointer"><circle cx="380" cy="20" r="5"/></g></svg></div>`;
+ }).join('')}<path class="dial-selection" d="${wedge(241,353,.4,step-.4)}" opacity="0"/><circle class="dial-center" cx="380" cy="380" r="180"/><image class="dial-food-icon" href="${iconURL}" x="341" y="284" width="78" height="78"/><text class="dial-country-flag" x="380" y="326" text-anchor="middle" dominant-baseline="middle" role="img" aria-label="" visibility="hidden"></text><text class="dial-center-label" x="380" y="399" text-anchor="middle">A world of flavor</text><text class="dial-center-detail" x="380" y="429" text-anchor="middle">31 countries &amp; regions</text><text class="dial-center-spices" x="380" y="460" text-anchor="middle"></text><g class="dial-pointer"><circle cx="380" cy="20" r="5"/></g></svg></div>`;
 }
 
 const states=new WeakMap();
@@ -33,6 +33,10 @@ export function highlightWheel(country,animate=true,selection=new Set(countries)
   dial.querySelectorAll('.country-sector').forEach(g=>{const selected=g.dataset.dialCountry===country;g.classList.toggle('active',selected);g.classList.toggle('in-filter',selection.size<countries.length&&selection.has(g.dataset.dialCountry));g.querySelector('path').setAttribute('aria-pressed',selection.has(g.dataset.dialCountry));});
   dial.querySelector('.dial-center-label').textContent=active?(labels[country]||country):selection.size===countries.length?'A world of flavor':selection.size?selection.size+' places selected':'Choose a country';
   dial.querySelector('.dial-center-detail').textContent=active?'3 dishes to discover':selection.size===countries.length?'31 countries & regions':selection.size*3+' dishes to discover';
+  const flag=active?flags[country]:null;
+  const flagNode=dial.querySelector('.dial-country-flag');
+  flagNode.textContent=flag||'';flagNode.setAttribute('aria-label',flag?'Flag of '+country:'');flagNode.setAttribute('visibility',flag?'visible':'hidden');
+  dial.querySelector('.dial-food-icon').setAttribute('visibility',flag?'hidden':'visible');
   const spices=dial.querySelector('.dial-center-spices');spices.replaceChildren();
   if(active){const notes=flavors[country]||[];for(let i=0;i<notes.length;i+=2){const line=document.createElementNS('http://www.w3.org/2000/svg','tspan');line.setAttribute('x','380');line.setAttribute('dy',i===0?'0':'23');line.textContent=notes.slice(i,i+2).join(' · ');spices.append(line);}}
   const ring=dial.querySelector('.dial-selection'),pointer=dial.querySelector('.dial-pointer');

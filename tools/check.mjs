@@ -68,6 +68,14 @@ async function run(variant,mobile){
  await page.locator('#modal [data-wheel-country="Japan"]').focus();await page.waitForTimeout(600);
  assert(await page.locator('#modal .dial-center-label').textContent()==='Japan','Keyboard focus highlights country');
  assert((await page.locator('#modal .dial-center-spices').textContent()).includes('Wasabi'),'Wheel shows country spices');
+ assert(await page.locator('#modal .dial-country-flag').textContent()==='🇯🇵','Country flag replaces food icon');
+ assert(await page.locator('#modal .dial-food-icon').getAttribute('visibility')==='hidden','Food icon hidden for country');
+ await page.locator('#modal [data-wheel-country="North Africa"]').dispatchEvent('pointerover',{pointerType:'mouse'});
+ assert(await page.locator('#modal .dial-food-icon').getAttribute('visibility')==='visible','Food icon is fallback for regions');
+ assert(await page.locator('#modal .dial-country-flag').getAttribute('visibility')==='hidden','Region has no misleading flag');
+ await page.locator('#modal [data-wheel-country="Canada"]').dispatchEvent('pointerover',{pointerType:'mouse'});
+ assert(await page.locator('#modal .dial-country-flag').textContent()==='🇨🇦','Pointer hover updates flag');
+ await page.locator('#modal [data-wheel-country="Japan"]').dispatchEvent('pointerover',{pointerType:'mouse'});
  assert(await page.locator('.flavor-dial title').count()===0,'No native wheel tooltips linger');
  const before=await page.locator('#modal .dial-selection').getAttribute('d');
  await page.locator('#modal [data-wheel-country="Brazil"]').focus();await page.waitForTimeout(80);

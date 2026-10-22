@@ -15,6 +15,8 @@
 .dial-center{fill:var(--bg);stroke:var(--line);stroke-width:1}
 .dial-center-label{fill:var(--ink);font:27px Georgia,serif;pointer-events:none}
 .dial-center-detail{fill:var(--muted);font:13px Arial,sans-serif;pointer-events:none}
+.dial-country-flag{font:66px 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;pointer-events:none}
+.dial-food-icon{pointer-events:none}
 .dial-center-spices{fill:var(--muted);font:18px Arial,sans-serif;pointer-events:none}
 .flavor-dial:focus,.country-sector path:focus{outline:none}
 .country-sector path:focus-visible{stroke:var(--ink);stroke-width:4}
