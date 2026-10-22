@@ -1,11 +1,5 @@
-import {countries} from './data.js?v=20261022';
+import {countries,regions} from './data.js?v=20261022-multi';
 
-const regions = [
-  ['Europe', 'europe', ['Germany','Spain','Italy','France','United Kingdom','Greece','Cyprus','Scandinavia','Eastern Europe']],
-  ['Asia', 'asia', ['China','Japan','Korea','Thailand','Vietnam','India','Iran','Mediterranean (Levant examples)']],
-  ['Africa', 'africa', ['West Africa','North Africa','Horn of Africa']],
-  ['Americas', 'americas', ['United States','Canada','Mexico','Central America','Caribbean','Brazil','Argentina','Uruguay','Chile','Peru','Bolivia']]
-];
 const labels={'Mediterranean (Levant examples)':'Levant','United Kingdom':'United Kingdom','United States':'United States','Eastern Europe':'Eastern Europe','Central America':'Central America'};
 const step=360/countries.length;
 const polar=(r,a)=>{const t=(a-90)*Math.PI/180;return [380+r*Math.cos(t),380+r*Math.sin(t)]};
@@ -30,13 +24,13 @@ export function wheelMarkup(iconURL){
 }
 
 const states=new WeakMap();
-export function highlightWheel(country,animate=true){
+export function highlightWheel(country,animate=true,selection=new Set(countries)){
  const index=ordered.findIndex(c=>c.country===country);
  document.querySelectorAll('.flavor-dial').forEach(dial=>{
   const active=index>=0;
-  dial.querySelectorAll('.country-sector').forEach(g=>{const selected=g.dataset.dialCountry===country;g.classList.toggle('active',selected);g.querySelector('path').setAttribute('aria-pressed',selected);});
-  dial.querySelector('.dial-center-label').textContent=active?(labels[country]||country):'A world of flavor';
-  dial.querySelector('.dial-center-detail').textContent=active?'3 dishes to discover':'31 countries & regions';
+  dial.querySelectorAll('.country-sector').forEach(g=>{const selected=g.dataset.dialCountry===country;g.classList.toggle('active',selected);g.classList.toggle('in-filter',selection.size<countries.length&&selection.has(g.dataset.dialCountry));g.querySelector('path').setAttribute('aria-pressed',selection.has(g.dataset.dialCountry));});
+  dial.querySelector('.dial-center-label').textContent=active?(labels[country]||country):selection.size===countries.length?'A world of flavor':selection.size?selection.size+' places selected':'Choose a country';
+  dial.querySelector('.dial-center-detail').textContent=active?'3 dishes to discover':selection.size===countries.length?'31 countries & regions':selection.size*3+' dishes to discover';
   const ring=dial.querySelector('.dial-selection'),pointer=dial.querySelector('.dial-pointer');
   let state=states.get(dial)||{angle:0,frame:0};cancelAnimationFrame(state.frame);
   ring.style.opacity=active?'1':'0';pointer.style.opacity=active?'1':'0';

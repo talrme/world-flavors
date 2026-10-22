@@ -10,6 +10,8 @@ A food explorer inspired by Tal's World of Flavor photo. The selected Field Note
 
 The circular flavor wheel has separate country sectors, continent bands, keyboard/touch selection, and a smoothly moving highlight. Hovering a dish highlights its country. Tap a country to filter the list. On phones the wheel opens from the Flavor wheel button; on desktop it is also beside the list. Your original photographed wheel is available through Original photo in the wheel dialog.
 
+The Countries / regions picker supports any combination of countries, Select all and Clear all. Toggle whole Europe, Asia, Africa or Americas groups, or adjust individual entries; a mixed-state checkbox indicates a partly selected group. Results update immediately, and Done, Escape or outside-click closes the picker. Clear all intentionally shows no dishes. These filters combine with search, cooking method and Want to try / Tried, and apply for the current visit. Clicking a wheel sector or a country heading focuses that one country; Everywhere restores all countries. The wheel also marks the currently selected subset.
+
 ## Food preferences and sources
 
 The recommendations avoid pork. Seventeen entries were replaced, including the original pork dishes and recipes with less obvious cured-meat ingredients. Examples: beef barbacoa replaces carnitas, galinhada replaces feijoada, and vegetarian miso ramen replaces tonkotsu.

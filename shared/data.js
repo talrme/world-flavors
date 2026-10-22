@@ -1,5 +1,12 @@
 import { groups } from './dishes.mjs?v=20261022';
 
+export const regions = [
+  ['Europe', 'europe', ['Germany','Spain','Italy','France','United Kingdom','Greece','Cyprus','Scandinavia','Eastern Europe']],
+  ['Asia', 'asia', ['China','Japan','Korea','Thailand','Vietnam','India','Iran','Mediterranean (Levant examples)']],
+  ['Africa', 'africa', ['West Africa','North Africa','Horn of Africa']],
+  ['Americas', 'americas', ['United States','Canada','Mexico','Central America','Caribbean','Brazil','Argentina','Uruguay','Chile','Peru','Bolivia']]
+];
+
 const flags = {'Brazil':'🇧🇷','China':'🇨🇳','Japan':'🇯🇵','Korea':'🇰🇷','Thailand':'🇹🇭','Vietnam':'🇻🇳','India':'🇮🇳','Iran':'🇮🇷','Greece':'🇬🇷','Cyprus':'🇨🇾','Germany':'🇩🇪','Spain':'🇪🇸','Italy':'🇮🇹','France':'🇫🇷','United Kingdom':'🇬🇧','United States':'🇺🇸','Canada':'🇨🇦','Mexico':'🇲🇽','Argentina':'🇦🇷','Uruguay':'🇺🇾','Chile':'🇨🇱','Peru':'🇵🇪','Bolivia':'🇧🇴'};
 const ipRecipeNames = ['Misir wot','Chinese beef and daikon stew','Japanese chicken curry','Pho bo','Dal tadka','Chana masala','Ghormeh sabzi','Hungarian goulash','Chili','Macaroni and cheese','Vegetarian split pea soup','Chicken tinga','Chicken tagine'];
 const slowRecipeNames = ['Groundnut stew (maafe)','Beef barbacoa','Ropa vieja','Vegetarian split pea soup'];

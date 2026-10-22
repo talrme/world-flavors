@@ -42,4 +42,6 @@ For a later simple backend, a Google Sheet + Apps Script could store one journal
 
 ## Verification
 
+Country filtering uses a Set of selected names, initially all 31. Empty means zero results, not all. The modal uses individual checkboxes, group checkboxes with indeterminate state, and select-all/clear-all actions. Changes apply immediately and stay when the modal closes/reopens; filter selections are session-only. Keep the group mapping in exported `regions` in `shared/data.js` as the single source of truth for the picker and wheel. These are broad culinary groupings, not a claim of exact continent boundaries. Wheel/heading clicks still focus one country. Multi-selection highlights on the wheel are distinct from transient hover/focus animation. Country filtering must intersect with search/method/collection filters and must never alter the journal.
+
 Run `tools/check.mjs` with a running HTTP preview (port 5178). Check 390x844, 320px and 1440px widths, no overflow, all themes, modal dismissal, search/filters, persistence, 31 clickable wheel sectors, round geometry, keyboard selection, animation and root install manifest. Inspect screenshots, including night mode and phone wheel. Maintain README alongside behavior changes.

@@ -40,7 +40,26 @@ async function run(variant,mobile){
  await close(page);await page.locator('[data-view="tried"]').click();assert(await page.locator('[data-open]').count()===1,'Tried list works');
  await page.locator('[data-view="all"]').click();await page.locator('#method').selectOption('instant');assert((await page.locator('#result-count').textContent()).startsWith('13'),'13 specific Instant Pot recipes');
  await page.locator('#method').selectOption('slow');assert((await page.locator('#result-count').textContent()).startsWith('4'),'4 specific slow cooker recipes');
- await page.locator('#method').selectOption('all');await page.locator('#country').selectOption('Germany');assert(await page.locator('[data-open]').count()===3,'Country filtering works');
+ await page.locator('#method').selectOption('all');await page.locator('#country').click();
+ await page.locator('[data-action="clear-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('0 '),'Clear all shows no dishes');
+ await page.locator('[data-country-check="Germany"]').check();await page.locator('[data-country-check="Japan"]').check();
+ assert((await page.locator('#result-count').textContent()).startsWith('6 '),'Two countries combine results');
+ assert(await page.locator('[data-region-check="europe"]').evaluate(el=>el.indeterminate),'Europe shows mixed state');
+ assert(await page.locator('[data-region-check="asia"]').evaluate(el=>el.indeterminate),'Asia shows mixed state');
+ assert(await page.locator('.wheel-aside .in-filter').count()===2,'Wheel shows both selected countries');
+ await page.waitForTimeout(250);await page.screenshot({path:fileURLToPath(new URL(`test-results/countries-${mobile?'phone':'desktop'}.png`,root))});
+ await page.mouse.click(4,4);await page.waitForTimeout(220);assert(await page.locator('#modal').isHidden(),'Country picker closes outside');
+ assert(await page.locator('#country-summary').textContent()==='2 selected','Compact selected-count summary');
+ await page.locator('#country').click();assert(await page.locator('[data-country-check="Japan"]').isChecked(),'Selection retained when reopening');
+ await page.locator('[data-region-check="europe"]').check();assert((await page.locator('#result-count').textContent()).startsWith('30 '),'Continent adds its countries without clearing others');
+ await page.locator('[data-region-check="europe"]').uncheck();assert((await page.locator('#result-count').textContent()).startsWith('3 '),'Continent toggle removes only its countries');
+ await page.locator('[data-region-check="asia"]').check();assert((await page.locator('#result-count').textContent()).startsWith('24 '),'Asia selects eight entries');
+ await page.locator('[data-region-check="americas"]').check();assert((await page.locator('#result-count').textContent()).startsWith('57 '),'Americas combines with Asia');
+ await page.locator('[data-region-check="africa"]').check();assert((await page.locator('#result-count').textContent()).startsWith('66 '),'Africa adds nine dishes');
+ await page.locator('[data-action="select-all-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('93 '),'Select all restores all dishes');
+ await page.locator('[data-country-check="Germany"]').uncheck();assert((await page.locator('#result-count').textContent()).startsWith('90 '),'Deselect one from all');
+ await page.locator('[data-action="clear-countries"]').click();await page.locator('[data-country-check="Germany"]').check();await close(page);
+ assert(await page.locator('[data-open]').count()===3,'Country filtering works');
  assert(await page.locator('.wheel-aside .country-sector.active').count()===1,'Selected country highlights wheel');
  await page.locator('[data-action="wheel"]:visible').first().click();
  const orbit=await page.locator('#modal .flavor-orbit').boundingBox();assert(Math.abs(orbit.width-orbit.height)<1,'Wheel is a true circle');
@@ -54,8 +73,8 @@ async function run(variant,mobile){
  await page.locator('#modal [data-wheel-country="Japan"]').focus();await page.waitForTimeout(600);
  await page.screenshot({path:fileURLToPath(new URL(`test-results/wheel-${mobile?'phone':'desktop'}.png`,root))});
  await page.locator('#modal [data-wheel-country="India"]').click({force:true});await page.waitForTimeout(220);
- assert(await page.locator('#country').inputValue()==='India','Photo sector changes country');
- await page.locator('#country').selectOption('');
+ assert(await page.locator('#country-summary').textContent()==='India','Wheel sector focuses country');
+ await page.locator('#country').click();await page.locator('[data-action="select-all-countries"]').click();await close(page);
  await page.locator('[data-action="settings"]').click();
  for(const theme of ['night','garden','cherry','original']){
   await page.locator(`[data-theme="${theme}"]`).click();assert(await page.locator('body').getAttribute('data-theme')===theme,'Immediate theme switch');
