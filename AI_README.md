@@ -28,6 +28,8 @@ Do not alter unrelated dish IDs or overwrite saved user notes. Removed entries' 
 
 ## UX
 
+In wheel multi-select, selection appearance must be independent of hover/focus: `is-chosen` marks true membership, while `active` only previews flag/spices. Do not show the traveling ring/pointer in multi-select, or reapply a selected-looking hover fill to removed slices. Use a short fill/stroke transition; retain a distinct dashed wedge focus indicator for keyboard users. Pass the preview country through `setCountries` to `renderResults` so one interaction produces one coherent highlight update, not a jump to the remaining country and back. Center text explicitly says Not selected for a deselected preview.
+
 The enlarged wheel offers a session-local `wheelMulti` switch, default off. `chooseWheelCountry` toggles a country in the existing Set and keeps the modal open only when that switch is on inside the wheel dialog; otherwise it preserves single-country focus/close behavior. Both pointer and keyboard activation must use that helper. Select all and Clear all are explicit and keep the wheel open in either mode. Empty means none, never all. Done closes the dialog. The live selected-count label and underlying country picker must remain consistent; don't replace the modal DOM while toggling sectors or destroy keyboard focus.
 
 Keep the top minimal: only the compact World Flavors brand, then functional controls and dishes. The user explicitly removed the promotional heading, subtitle and dish tally to preserve phone space. Do not reintroduce an intro/hero. Result heading and live count remain screen-reader-only, not a visible extra row.

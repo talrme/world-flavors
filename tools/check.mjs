@@ -96,6 +96,16 @@ async function run(variant,mobile){
  assert(await page.locator('#wheel-count').textContent()==='2 selected','Wheel selection count updates');
  await page.waitForTimeout(600);await page.screenshot({path:fileURLToPath(new URL(`test-results/wheel-multi-${mobile?'phone':'desktop'}.png`,root))});
  await page.locator('#modal [data-wheel-country="Germany"]').focus();await page.keyboard.press('Enter');assert((await page.locator('#result-count').textContent()).startsWith('3 '),'Wheel can deselect a country');
+ assert(await page.locator('#modal .dial-center-detail').textContent()==='Not selected','Deselection status is explicit while previewing');
+ assert(await page.locator('#modal [data-dial-country="Germany"]').evaluate(el=>!el.classList.contains('is-chosen')),'Deselected wedge loses selection styling');
+ assert(await page.locator('#modal .dial-selection').evaluate(el=>el.style.opacity)==='0','No traveling selection outline in multi-select');
+ await page.waitForTimeout(260);
+ const removedFill=await page.locator('#modal [data-wheel-country="Germany"]').evaluate(el=>getComputedStyle(el).fill);
+ const unselectedFill=await page.locator('#modal [data-wheel-country="France"]').evaluate(el=>getComputedStyle(el).fill);
+ assert(removedFill===unselectedFill,'Hover/focus does not make a deselected slice look selected');
+ await page.screenshot({path:fileURLToPath(new URL(`test-results/wheel-deselected-${mobile?'phone':'desktop'}.png`,root))});
+ for(let repeat=0;repeat<3;repeat++){await page.keyboard.press('Enter');await page.keyboard.press('Enter');}
+ assert(await page.locator('#wheel-count').textContent()==='1 selected','Rapid repeated toggles stay consistent');
  await page.locator('#modal [data-action="select-all-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('93 '),'Wheel select all restores all dishes');
  await page.locator('[data-wheel-multi]').uncheck();await page.locator('#modal .wheel-bulk [data-action="close"]').click();await page.waitForTimeout(220);assert(await page.locator('#modal').isHidden(),'Wheel Done closes modal');
  assert(await page.locator('.dish-row').first().evaluate(el=>getComputedStyle(el).backgroundColor==='rgba(0, 0, 0, 0)'),'No rectangular row highlight remains after a wheel selection');

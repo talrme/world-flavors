@@ -9,6 +9,11 @@
 .country-label{fill:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:15px;pointer-events:none;user-select:none;font-weight:500}
 .country-sector.active .country-label{font-weight:750}
 .country-sector.in-filter:not(.active) path{fill:color-mix(in srgb,var(--sector) 32%,var(--paper));stroke:var(--accent);stroke-width:1.5}
+.flavor-dial[data-multi=true] .country-sector path{fill:color-mix(in srgb,var(--sector) 7%,var(--paper));stroke:var(--paper);stroke-width:2;transition:fill .2s ease,stroke .2s ease}
+.flavor-dial[data-multi=true] .country-sector.is-chosen path{fill:color-mix(in srgb,var(--sector) 38%,var(--paper));stroke:var(--sector);stroke-width:2}
+.flavor-dial[data-multi=true] .country-sector:not(.is-chosen) .country-label{fill:var(--muted);font-weight:400}
+.flavor-dial[data-multi=true] .country-sector.is-chosen .country-label{font-weight:650}
+.flavor-dial[data-multi=true] .country-sector path:focus-visible{stroke:var(--ink);stroke-width:4;stroke-dasharray:4 3}
 .region-band{fill:var(--soft)}.region-band.asia{fill:color-mix(in srgb,#398a94 13%,var(--paper))}.region-band.africa{fill:color-mix(in srgb,#bc6374 13%,var(--paper))}.region-band.north-america{fill:color-mix(in srgb,#c47c43 13%,var(--paper))}.region-band.south-america{fill:color-mix(in srgb,#9b7940 13%,var(--paper))}
 .region-label{fill:var(--muted);font-size:12px;letter-spacing:0;pointer-events:none}
 .dial-selection{fill:none;stroke:var(--accent);stroke-width:3;pointer-events:none;transition:opacity .2s}

@@ -38,19 +38,20 @@ function shell(){
  applyPrefs();renderResults();refreshIcons();
 }
 function wheelMarkup(){return circularWheel(asset('assets/food-icon.png'));}
-function highlight(c){highlightWheel(c,true,selectedCountries);all('[data-wheel-caption]').forEach(el=>{el.textContent=c?displayCountry(c):'Everywhere tastes different.'});}
+function highlight(c){highlightWheel(c,true,selectedCountries,wheelMulti&&modalKind==='wheel'&&!$('#modal').hidden);all('[data-wheel-caption]').forEach(el=>{el.textContent=c?displayCountry(c):'Everywhere tastes different.'});}
 function singleCountry(){return selectedCountries.size===1?[...selectedCountries][0]:'';}
 function updateCountrySummary(){const count=selectedCountries.size;if($('#wheel-count'))$('#wheel-count').textContent=count+' selected';$('#country-summary').textContent=count===countries.length?'Everywhere':count===0?'None selected':count===1?displayCountry([...selectedCountries][0]):count+' selected';if(modalKind==='countries'&&!$('#modal').hidden){$('#country-count').textContent=count+' of '+countries.length+' selected';all('[data-country-check]').forEach(input=>input.checked=selectedCountries.has(input.dataset.countryCheck));all('[data-region-check]').forEach(input=>{const items=regions.find(r=>r[1]===input.dataset.regionCheck)[2];const total=items.filter(c=>selectedCountries.has(c)).length;input.checked=total===items.length;input.indeterminate=total>0&&total<items.length;});}}
-function setCountries(items){selectedCountries=new Set(items);selected='';pageLimit=24;renderResults();highlight(singleCountry());}
+function setCountries(items,previewCountry){selectedCountries=new Set(items);selected='';pageLimit=24;renderResults(previewCountry);}
 function countryPicker(){showModal('countries',`${modalHead('Countries & regions')}<div class="country-picker-toolbar"><span id="country-count" role="status"></span><div><button class="text-action" data-action="select-all-countries">Select all</button><button class="text-action" data-action="clear-countries">Clear all</button></div></div><div class="region-groups">${regions.map(([name,id,items])=>`<section class="region-group" aria-label="${e(name)}"><label class="region-check"><input type="checkbox" data-region-check="${id}"><span>${e(name)}</span><small>${items.length}</small></label><div class="country-checks">${[...items].sort((a,b)=>a.localeCompare(b)).map(c=>`<label><input type="checkbox" data-country-check="${e(c)}"><span>${e(displayCountry(c))}</span></label>`).join('')}</div></section>`).join('')}</div><div class="country-picker-footer"><button class="primary" data-action="close">Done</button></div>`);updateCountrySummary();}
 function miniActions(d){const j=journal[d.id]||{};return `<button class="icon-button save-button ${j.saved?'selected':''}" data-save="${d.id}" aria-pressed="${!!j.saved}" aria-label="${j.saved?'Remove from want to try:':'Want to try:'} ${e(d.name)}" title="${j.saved?'Remove from want to try':'Want to try'}">${icon('bookmark',17)}</button>`;}
 function row(d){const j=journal[d.id]||{};return `<article class="dish-row ${selected===d.id?'is-selected':''}" data-hover="${e(d.country)}"><button class="dish-open" data-open="${d.id}"><span class="dish-text"><strong>${e(d.name)}${j.tried?`<span class="tried-mark" title="Tried">${icon('check',13)}</span>`:''}</strong><small>${e(d.description)}</small></span><span class="row-end">${badges(d)}<small>${d.active} min active</small>${icon('chevron-right',16)}</span></button>${miniActions(d)}</article>`;}
-function renderResults(){
+function renderResults(previewCountry){
  const items=resultList(),area=$('#result-area');
  $('#result-count').textContent=`${items.length} ${items.length===1?'dish':'dishes'}`;
  updateCountrySummary();
  $('#results-title').textContent=selectedCountries.size===1?displayCountry([...selectedCountries][0]):view==='saved'?'Want to try':view==='tried'?'Tasted & remembered' : 'On the menu';
  all('[data-view]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===view));
+ highlight(previewCountry??(dishes.find(d=>d.id===selected)?.country||singleCountry()));
  if(!items.length){area.innerHTML=`<div class="empty-state">${icon(view==='saved'?'bookmark':'search',32)}<h3>${view==='saved'?'Your next food adventure starts here.':'Nothing on this menu.'}</h3><p>${view==='saved'?'Bookmark a dish you want to try.':'Try another country, ingredient or cooking method.'}</p><button data-action="reset-filters" class="primary">Browse all dishes</button></div>`;$('#more-area').innerHTML='';refreshIcons();return;}
  const visible=items.slice(0,pageLimit);
  {
@@ -59,7 +60,7 @@ function renderResults(){
   area.innerHTML=[...grouped].map(([c,ds])=>`<section class="country-group"><header class="country-heading"><span class="country-flag">${flags[c]||'🌍'}</span><div class="country-title"><h3><button class="country-info-button" data-flavor-country="${e(c)}" aria-label="Flavor notes for ${e(displayCountry(c))}">${e(displayCountry(c))}</button></h3><p class="country-flavors">${e((flavors[c]||[]).slice(0,4).join(' · '))}</p></div><button class="icon-button" data-country-choice="${e(c)}" title="Focus this country" aria-label="Focus ${e(displayCountry(c))}">${icon('arrow-up-right',17)}</button></header>${ds.map(row).join('')}</section>`).join('');
  }
  $('#more-area').innerHTML=items.length>visible.length?`<button class="load-more" data-action="more">More dishes ${icon('chevron-down',16)}<small>${items.length-visible.length} more</small></button>`:'';
- highlight(dishes.find(d=>d.id===selected)?.country||singleCountry());refreshIcons();
+ refreshIcons();
 }
 const modalHead=(title,eyebrow='')=>`<header class="modal-header"><div>${eyebrow?`<span class="eyebrow">${e(eyebrow)}</span>`:''}<h2 id="modal-title">${e(title)}</h2></div><button class="icon-button close-button" data-action="close" title="Close" aria-label="Close dialog">${icon('x',22)}</button></header>`;
 function showModal(kind,html){
@@ -79,7 +80,7 @@ function share(){const url=window.location.href.split('#')[0];showModal('share',
 let toastTimer;function toast(msg){$('#toast').textContent=msg;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,2400);}
 let sources={};
 async function init(){try{sources=await(await fetch(asset('shared/sources.json'),{cache:'no-cache'})).json();shell();bind();}catch(err){$('#app').innerHTML='<p class="load-error">The menu could not load. Please refresh the page.</p>';console.error(err)}}
-function chooseWheelCountry(c){if(wheelMulti&&modalKind==='wheel'&&!$('#modal').hidden){const next=new Set(selectedCountries);if(next.has(c))next.delete(c);else next.add(c);setCountries(next);highlight(c);}else pickCountry(c);}
+function chooseWheelCountry(c){if(wheelMulti&&modalKind==='wheel'&&!$('#modal').hidden){const next=new Set(selectedCountries);if(next.has(c))next.delete(c);else next.add(c);setCountries(next,c);}else pickCountry(c);}
 function pickCountry(c){selectedCountries=new Set(c?[c]:countries);selected='';pageLimit=24;renderResults();if(!$('#modal').hidden)closeModal();}
 function resetFilters(){selectedCountries=new Set(countries);selected='';query='';method='all';view='all';pageLimit=24;$('#search').value='';$('#method').value='all';renderResults();}
 function bind(){
@@ -87,7 +88,7 @@ function bind(){
  $('#method').addEventListener('change',ev=>{method=ev.target.value;pageLimit=24;renderResults()});
  $('#sort').addEventListener('change',ev=>{sort=ev.target.value;renderResults()});
  document.addEventListener('input',ev=>{if(ev.target.matches('[data-note]'))saveNote()});
- document.addEventListener('change',ev=>{if(ev.target.matches('[data-wheel-multi]')){wheelMulti=ev.target.checked;return;}if(ev.target.matches('[data-country-check]')){const c=ev.target.dataset.countryCheck;const next=new Set(selectedCountries);if(ev.target.checked)next.add(c);else next.delete(c);setCountries(next);return;}if(ev.target.matches('[data-region-check]')){const items=regions.find(r=>r[1]===ev.target.dataset.regionCheck)[2];const next=new Set(selectedCountries);items.forEach(c=>ev.target.checked?next.add(c):next.delete(c));setCountries(next);return;}if(ev.target.matches('[data-pref]')){prefs[ev.target.dataset.pref]=ev.target.checked;applyPrefs();persist();}});
+ document.addEventListener('change',ev=>{if(ev.target.matches('[data-wheel-multi]')){wheelMulti=ev.target.checked;highlight(singleCountry());return;}if(ev.target.matches('[data-country-check]')){const c=ev.target.dataset.countryCheck;const next=new Set(selectedCountries);if(ev.target.checked)next.add(c);else next.delete(c);setCountries(next);return;}if(ev.target.matches('[data-region-check]')){const items=regions.find(r=>r[1]===ev.target.dataset.regionCheck)[2];const next=new Set(selectedCountries);items.forEach(c=>ev.target.checked?next.add(c):next.delete(c));setCountries(next);return;}if(ev.target.matches('[data-pref]')){prefs[ev.target.dataset.pref]=ev.target.checked;applyPrefs();persist();}});
  document.addEventListener('pointerover',ev=>{if(ev.pointerType==='touch')return;const el=ev.target.closest('[data-hover],[data-dial-country]');if(el)highlight(el.dataset.hover||el.dataset.dialCountry)});
  document.addEventListener('focusin',ev=>{if(ev.target.matches('[data-wheel-country]'))highlight(ev.target.dataset.wheelCountry)});
  document.addEventListener('pointerout',ev=>{if(ev.target.closest('.flavor-orbit')&&!ev.relatedTarget?.closest('.flavor-orbit'))highlight(dishes.find(d=>d.id===selected)?.country||singleCountry())});

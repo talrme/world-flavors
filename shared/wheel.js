@@ -26,13 +26,14 @@ export function wheelMarkup(iconURL){
 }
 
 const states=new WeakMap();
-export function highlightWheel(country,animate=true,selection=new Set(countries)){
+export function highlightWheel(country,animate=true,selection=new Set(countries),multiSelect=false){
  const index=ordered.findIndex(c=>c.country===country);
  document.querySelectorAll('.flavor-dial').forEach(dial=>{
   const active=index>=0;
-  dial.querySelectorAll('.country-sector').forEach(g=>{const selected=g.dataset.dialCountry===country;g.classList.toggle('active',selected);g.classList.toggle('in-filter',selection.size<countries.length&&selection.has(g.dataset.dialCountry));g.querySelector('path').setAttribute('aria-pressed',selection.has(g.dataset.dialCountry));});
+  const multi=multiSelect&&!!dial.closest('#modal');dial.dataset.multi=String(multi);
+  dial.querySelectorAll('.country-sector').forEach(g=>{const selected=g.dataset.dialCountry===country;g.classList.toggle('active',selected);g.classList.toggle('is-chosen',selection.has(g.dataset.dialCountry));g.classList.toggle('in-filter',selection.size<countries.length&&selection.has(g.dataset.dialCountry));g.querySelector('path').setAttribute('aria-pressed',selection.has(g.dataset.dialCountry));});
   dial.querySelector('.dial-center-label').textContent=active?(labels[country]||country):selection.size===countries.length?'A world of flavor':selection.size?selection.size+' places selected':'Choose a country';
-  dial.querySelector('.dial-center-detail').textContent=active?'3 dishes to discover':selection.size===countries.length?'31 countries & regions':selection.size*3+' dishes to discover';
+  dial.querySelector('.dial-center-detail').textContent=active?(multi?(selection.has(country)?'Selected · 3 dishes':'Not selected'):'3 dishes to discover'):selection.size===countries.length?'31 countries & regions':selection.size*3+' dishes to discover';
   const flag=active?flags[country]:null;
   const flagNode=dial.querySelector('.dial-country-flag');
   flagNode.textContent=flag||'';flagNode.setAttribute('aria-label',flag?'Flag of '+country:'');flagNode.setAttribute('visibility',flag?'visible':'hidden');
@@ -41,8 +42,9 @@ export function highlightWheel(country,animate=true,selection=new Set(countries)
   if(active){const notes=flavors[country]||[];for(let i=0;i<notes.length;i+=2){const line=document.createElementNS('http://www.w3.org/2000/svg','tspan');line.setAttribute('x','380');line.setAttribute('dy',i===0?'0':'23');line.textContent=notes.slice(i,i+2).join(' · ');spices.append(line);}}
   const ring=dial.querySelector('.dial-selection'),pointer=dial.querySelector('.dial-pointer');
   let state=states.get(dial)||{angle:0,frame:0};cancelAnimationFrame(state.frame);
-  ring.style.opacity=active?'1':'0';pointer.style.opacity=active?'1':'0';
-  if(!active){states.set(dial,state);return;}
+  const moving=active&&!multi;
+  ring.style.opacity=moving?'1':'0';pointer.style.opacity=moving?'1':'0';
+  if(!moving){states.set(dial,state);return;}
   const target=index*step;const delta=((target-state.angle+540)%360)-180;
   const start=state.angle,time=performance.now();
   const reduce=!animate||document.body.classList.contains('still')||matchMedia('(prefers-reduced-motion: reduce)').matches;
