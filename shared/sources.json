@@ -1,0 +1,374 @@
+{
+  "Pao de queijo": {
+    "url": "https://www.oliviascuisine.com/easy-pao-de-queijo/",
+    "query": "easy blender pao de queijo recipe simply recipes"
+  },
+  "Moqueca": {
+    "url": "https://www.simplyrecipes.com/recipes/moqueca___brazilian_fish_stew/",
+    "query": "moqueca recipe simply recipes"
+  },
+  "Feijoada": {
+    "url": "https://www.dadcooksdinner.com/pressure-cooker-feijoada-brazilian-black-bean-and-meat-stew/",
+    "query": "instant pot feijoada recipe Brazilian"
+  },
+  "Groundnut stew (maafe)": {
+    "url": "https://recipesfromapantry.com/slow-cooker-african-peanut-stew-post/",
+    "query": "West African peanut stew slow cooker recipe"
+  },
+  "Chicken yassa": {
+    "url": "https://www.foodnetwork.com/recipes/chicken-yassa-9545440",
+    "query": "chicken yassa recipe serious eats"
+  },
+  "Jollof rice": {
+    "url": "https://cheflolaskitchen.com/jollof-rice/",
+    "query": "jollof rice recipe chef lola"
+  },
+  "Shakshuka": {
+    "url": "https://www.themediterraneandish.com/shakshuka-recipe/",
+    "query": "shakshuka recipe mediterranean dish"
+  },
+  "Chicken tagine": {
+    "url": "https://instantpoteats.com/instant-pot-moroccan-chicken/",
+    "query": "Moroccan chicken tagine instant pot recipe"
+  },
+  "Chicken bastilla": {
+    "url": "https://www.cookingwithalia.com/moroccan-chicken-bastilla/",
+    "query": "Moroccan chicken bastilla recipe"
+  },
+  "Misir wot": {
+    "url": "https://ministryofcurry.com/ethiopian-spicy-lentil-stew-instant-pot/",
+    "query": "misir wot instant pot recipe"
+  },
+  "Atakilt wat": {
+    "url": "https://www.veganricha.com/atakilt-wat-ethiopian-cabbage-potato/",
+    "query": "atakilt wat recipe vegan richa"
+  },
+  "Doro wot with injera": {
+    "url": "https://www.daringgourmet.com/doro-wat-spicy-ethiopian-chicken-stew/",
+    "query": "doro wat recipe daring gourmet"
+  },
+  "Tomato and egg stir-fry": {
+    "url": "https://thewoksoflife.com/stir-fried-tomato-and-egg/",
+    "query": "tomato egg stir fry woks of life"
+  },
+  "Red-braised pork belly": {
+    "url": "https://www.dadcooksdinner.com/instant-pot-red-braised-pork-belly/",
+    "query": "red braised pork belly instant pot recipe"
+  },
+  "Xiao long bao": {
+    "url": "https://thewoksoflife.com/steamed-shanghai-soup-dumplings-xiaolongbao/",
+    "query": "xiao long bao recipe woks of life"
+  },
+  "Oyakodon": {
+    "url": "https://www.justonecookbook.com/oyakodon/",
+    "query": "oyakodon recipe just one cookbook"
+  },
+  "Japanese chicken curry": {
+    "url": "https://www.justonecookbook.com/pressure-cooker-japanese-curry/",
+    "query": "instant pot japanese curry just one cookbook"
+  },
+  "Tonkotsu ramen": {
+    "url": "https://doobydobap.com/recipe/tonkotsu-ramen",
+    "query": "tonkotsu ramen recipe serious eats"
+  },
+  "Kimchi fried rice": {
+    "url": "https://www.maangchi.com/recipe/kimchi-bokkeumbap",
+    "query": "kimchi fried rice recipe maangchi"
+  },
+  "Dubu jorim": {
+    "url": "https://www.maangchi.com/recipe/dubu-jorim",
+    "query": "dubu jorim recipe maangchi"
+  },
+  "Korean fried chicken": {
+    "url": "https://www.maangchi.com/Recipe/easy-dakgangjeong",
+    "query": "Korean fried chicken recipe maangchi"
+  },
+  "Pad kra pao": {
+    "url": "https://hot-thai-kitchen.com/pad-kra-pao-anything/",
+    "query": "pad kra pao recipe hot thai kitchen"
+  },
+  "Thai green curry": {
+    "url": "https://hot-thai-kitchen.com/green-curry-new-2/",
+    "query": "Thai green curry recipe hot thai kitchen"
+  },
+  "Khao soi": {
+    "url": "https://hot-thai-kitchen.com/kao-soi/",
+    "query": "khao soi recipe hot thai kitchen"
+  },
+  "Lemongrass chicken": {
+    "url": "https://www.jamesbeard.org/recipes/vietnamese-lemongrass-chicken",
+    "query": "Vietnamese lemongrass chicken recipe hungry huy"
+  },
+  "Goi cuon": {
+    "url": "https://www.hungryhuy.com/how-to-make-goi-cuon-vietnamese-spring-rolls/",
+    "query": "Vietnamese spring rolls recipe hungry huy"
+  },
+  "Pho bo": {
+    "url": "https://www.pressurecookrecipes.com/instant-pot-pho/",
+    "query": "instant pot pho bo recipe pressure cook recipes"
+  },
+  "Dal tadka": {
+    "url": "https://pipingpotcurry.com/dal-tadka-instant-pot/",
+    "query": "instant pot dal tadka recipe piping pot curry"
+  },
+  "Chana masala": {
+    "url": "https://pipingpotcurry.com/punjabi-chole-instant-pot/",
+    "query": "instant pot chana masala recipe my heart beets"
+  },
+  "Chicken dum biryani": {
+    "url": "https://www.indianhealthyrecipes.com/chicken-dum-biryani/",
+    "query": "chicken dum biryani recipe swasthi"
+  },
+  "Shirazi salad": {
+    "url": "https://www.themediterraneandish.com/shirazi-salad-recipe/",
+    "query": "shirazi salad recipe mediterranean dish"
+  },
+  "Ghormeh sabzi": {
+    "url": "https://familyspice.com/instant-pot-gormeh-sabzi/",
+    "query": "instant pot ghormeh sabzi recipe"
+  },
+  "Tahdig with rice and kebab": {
+    "url": "https://www.tilda.com/how-to/how-to-make-a-tahdig-persian-rice/",
+    "query": "tahdig recipe persian rice"
+  },
+  "Hummus": {
+    "url": "https://www.inspiredtaste.net/15938/easy-and-smooth-hummus-recipe/",
+    "query": "hummus recipe mediterranean dish"
+  },
+  "Mujaddara": {
+    "url": "https://feelgoodfoodie.net/recipe/mujadara/",
+    "query": "mujadara recipe feel good foodie"
+  },
+  "Falafel": {
+    "url": "https://www.inspiredtaste.net/42640/falafel-recipe/",
+    "query": "falafel recipe mediterranean dish"
+  },
+  "Horiatiki": {
+    "url": "https://www.themediterraneandish.com/traditional-greek-salad-recipe/",
+    "query": "Greek salad horiatiki recipe mediterranean dish"
+  },
+  "Fasolada": {
+    "url": "https://www.mygreekdish.com/recipe/traditional-greek-bean-soup-recipe-fasolada/",
+    "query": "instant pot fasolada recipe"
+  },
+  "Moussaka": {
+    "url": "https://www.recipetineats.com/moussaka-greek-eggplant-beef-bake/",
+    "query": "moussaka recipe recipetineats"
+  },
+  "Grilled halloumi with lemon": {
+    "url": "https://www.mygreekdish.com/recipe/how-to-cook-halloumi-cheese-pan-fried-and-grilled-halloumi-recipe/",
+    "query": "grilled halloumi recipe my greek dish"
+  },
+  "Moutzentra": {
+    "url": "https://chrysolefou.com/en/recipes/moutzentra",
+    "query": "moutzentra recipe Cyprus lentils rice"
+  },
+  "Sheftalia": {
+    "url": "https://www.sbs.com.au/food/recipe/cypriot-sausages-sheftalia/83eik44gv",
+    "query": "sheftalia recipe serious eats"
+  },
+  "Smorrebrod": {
+    "url": "https://www.epicurious.com/recipes/food/views/smoked-salmon-smorrebrod-104397",
+    "query": "smorrebrod recipe serious eats"
+  },
+  "Swedish meatballs": {
+    "url": "https://www.recipetineats.com/swedish-meatballs/",
+    "query": "Swedish meatballs recipe recipetineats"
+  },
+  "Danish pastries": {
+    "url": "https://www.kingarthurbaking.com/recipes/danish-pastry-recipe",
+    "query": "Danish pastry recipe king arthur baking"
+  },
+  "Hungarian goulash": {
+    "url": "https://www.hwcmagazine.com/recipe/hungarian-goulash-soup-gulyasleves/",
+    "query": "instant pot Hungarian goulash recipe"
+  },
+  "Borscht": {
+    "url": "https://natashaskitchen.com/classic-russian-borscht-recipe/",
+    "query": "borscht recipe natashas kitchen"
+  },
+  "Pierogi": {
+    "url": "https://polishhousewife.com/pierogi-ruski/",
+    "query": "pierogi recipe polish housewife"
+  },
+  "Bratwurst with sauerkraut": {
+    "url": "https://theforkedspoon.com/bratwurst-and-sauerkraut/",
+    "query": "bratwurst sauerkraut recipe daring gourmet"
+  },
+  "Rouladen": {
+    "url": "https://www.quick-german-recipes.com/rouladen-recipe.html",
+    "query": "instant pot rouladen recipe"
+  },
+  "Schweinshaxe": {
+    "url": "https://www.recipetineats.com/crispy-german-pork-knuckle-schweinshaxe-with-beer-gravy/",
+    "query": "German pork knuckle recipe recipetineats"
+  },
+  "Pan con tomate": {
+    "url": "https://www.bonappetit.com/recipe/pan-con-tomate",
+    "query": "pan con tomate recipe serious eats"
+  },
+  "Tortilla espanola": {
+    "url": "https://www.themediterraneandish.com/spanish-tortilla-recipe/",
+    "query": "Spanish tortilla recipe serious eats"
+  },
+  "Paella": {
+    "url": "https://spanishsabores.com/traditional-spanish-paella-recipe/",
+    "query": "paella recipe spanish sabores"
+  },
+  "Pasta e ceci": {
+    "url": "https://smittenkitchen.com/2017/10/quick-pasta-and-chickpeas-pasta-e-ceci/",
+    "query": "pasta e ceci recipe smitten kitchen"
+  },
+  "Ragu bolognese": {
+    "url": "https://www.bbcgoodfoodme.com/recipes/slow-cooker-spaghetti-bolognese/",
+    "query": "slow cooker bolognese recipetineats"
+  },
+  "Neapolitan-style pizza": {
+    "url": "https://recipes.frescocooks.com/en-US/8844-serious-eats-neapolitan-pizza",
+    "query": "Neapolitan pizza recipe serious eats"
+  },
+  "Omelette with herbs": {
+    "url": "https://www.foodnetwork.com/fnk/recipes/classic-french-omelette-7151447",
+    "query": "French omelette recipe serious eats"
+  },
+  "Beef bourguignon": {
+    "url": "https://www.foodnetwork.com/recipes/food-network-kitchen/slow-cooker-beef-bourguignon-23028763",
+    "query": "slow cooker beef bourguignon recipe"
+  },
+  "Croissant": {
+    "url": "https://www.kingarthurbaking.com/recipes/bakers-croissants-recipe",
+    "query": "croissant recipe king arthur baking"
+  },
+  "Jacket potato with beans": {
+    "url": "https://www.bbcgoodfoodme.com/recipes/jacket-potatoes-with-homebaked-beans/",
+    "query": "jacket potato baked beans recipe BBC good food"
+  },
+  "Shepherds pie": {
+    "url": "https://www.recipetineats.com/shepherds-pie/",
+    "query": "shepherds pie recipe recipetineats"
+  },
+  "Fish and chips": {
+    "url": "https://www.daringgourmet.com/fish-and-chips/",
+    "query": "fish and chips recipe daring gourmet"
+  },
+  "Chili": {
+    "url": "https://www.foodnetwork.com/recipes/food-network-kitchen/instant-pot-chili-5340009",
+    "query": "instant pot chili recipe pressure cook recipes"
+  },
+  "Macaroni and cheese": {
+    "url": "https://instantpot.com/blogs/recipes/macaroni-and-cheese",
+    "query": "instant pot mac and cheese recipe"
+  },
+  "Texas smoked brisket": {
+    "url": "https://heygrillhey.com/texas-style-smoked-beef-brisket/",
+    "query": "Texas smoked brisket recipe hey grill hey"
+  },
+  "Split pea soup": {
+    "url": "https://cuisineravecmicheline.com/en/instant-pot-quebec-pea-soup/",
+    "query": "French Canadian pea soup instant pot recipe"
+  },
+  "Tourtiere": {
+    "url": "https://www.gg.ca/en/tourtiere-recipe",
+    "query": "tourtiere recipe seasons and suppers"
+  },
+  "Poutine": {
+    "url": "https://www.seasonsandsuppers.ca/authentic-canadian-poutine-recipe/",
+    "query": "poutine recipe seasons and suppers"
+  },
+  "Chicken tinga": {
+    "url": "https://alexandracooks.com/2020/09/11/instant-pot-chicken-tinga/",
+    "query": "instant pot chicken tinga recipe pinch of yum"
+  },
+  "Carnitas": {
+    "url": "https://www.recipetineats.com/pork-carnitas-mexican-slow-cooker-pulled-pork/",
+    "query": "carnitas slow cooker recipetineats"
+  },
+  "Mole poblano": {
+    "url": "https://patijinich.com/mole_poblano_de_los_angeles/",
+    "query": "mole poblano recipe pati jinich"
+  },
+  "Gallo pinto": {
+    "url": "https://www.curiouscuisiniere.com/costa-rican-gallo-pinto-rice-and-beans/",
+    "query": "gallo pinto recipe curious cuisiniere"
+  },
+  "Platanos maduros": {
+    "url": "https://www.laylita.com/recipes/fried-ripe-plantains-or-platanos-fritos/comment-page-1/",
+    "query": "fried sweet plantains recipe laylita"
+  },
+  "Pupusas": {
+    "url": "https://www.kingarthurbaking.com/recipes/pupusas-recipe",
+    "query": "pupusas recipe tastes better from scratch"
+  },
+  "Rice and peas": {
+    "url": "https://www.africanbites.com/jamaican-rice-and-peas/",
+    "query": "Jamaican rice and peas recipe immaculate bites"
+  },
+  "Ropa vieja": {
+    "url": "https://instantpot.com/blogs/recipes/slow-cooker-ropa-vieja",
+    "query": "instant pot ropa vieja recipe"
+  },
+  "Jerk chicken": {
+    "url": "https://www.foodnetwork.com/recipes/jamaican-jerk-chicken-recipe0-1925384",
+    "query": "jerk chicken recipe jamaican"
+  },
+  "Chimichurri steak": {
+    "url": "https://www.recipetineats.com/skirt-steak-with-chimichurri-sauce/",
+    "query": "chimichurri steak recipe recipetineats"
+  },
+  "Provoleta": {
+    "url": "https://www.lanacion.com.ar/recetas/provoleta-tradicional-nid05112016/",
+    "query": "provoleta recipe argentina"
+  },
+  "Empanadas saltenas": {
+    "url": "https://www.laylita.com/recipes/empanadas-mendocinas/",
+    "query": "Argentinian beef empanadas recipe laylita"
+  },
+  "Chivito": {
+    "url": "https://www.curiouscuisiniere.com/chivito/",
+    "query": "chivito recipe curious cuisiniere"
+  },
+  "Choripan": {
+    "url": "https://www.laylita.com/recetas/choripan/",
+    "query": "choripan recipe laylita"
+  },
+  "Chaja": {
+    "url": "https://elgourmet.com/recetas/chaja-uruguayo/pdf",
+    "query": "chaja dessert recipe Uruguay"
+  },
+  "Pebre": {
+    "url": "https://www.sbs.com.au/food/recipe/pebre/ez5xevvqi",
+    "query": "pebre recipe curious cuisiniere"
+  },
+  "Charquican": {
+    "url": "https://www.chileanfoodandgarden.com/chilean-charquican/",
+    "query": "charquican recipe chilean food and garden"
+  },
+  "Pastel de choclo": {
+    "url": "https://www.chileanfoodandgarden.com/chilean-corn-pie/",
+    "query": "pastel de choclo recipe chilean food and garden"
+  },
+  "Lomo saltado": {
+    "url": "https://www.eatperu.com/lomo-saltado-recipe/",
+    "query": "lomo saltado recipe eat peru"
+  },
+  "Aji de gallina": {
+    "url": "https://www.eatperu.com/aji-de-gallina/",
+    "query": "aji de gallina recipe eat peru"
+  },
+  "Ceviche": {
+    "url": "https://www.eatperu.com/ceviche-recipe/",
+    "query": "Peruvian ceviche recipe eat peru"
+  },
+  "Sopa de mani": {
+    "url": "https://boliviancookbook.com/2012/03/29/sopa-de-mani-bolivian-peanut-soup/",
+    "query": "sopa de mani recipe Bolivia"
+  },
+  "Papas a la huancaina (Bolivian style)": {
+    "url": "https://boliviancookbook.com/2013/05/10/papas-a-la-huancaina/",
+    "query": "Bolivian papas a la huancaina peanut recipe"
+  },
+  "Saltenas": {
+    "url": "https://elgourmet.com/recetas/saltenas-bolivianas/pdf",
+    "query": "Bolivian saltenas recipe"
+  }
+}
