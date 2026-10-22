@@ -18,6 +18,8 @@ async function run(variant,mobile){
  const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
  await page.goto(`http://127.0.0.1:5178/world-flavors/`);
  await page.locator('[data-open]').first().waitFor();
+ assert(await page.locator('.intro').count()===0,'No introductory title or tally');
+ const firstDish=await page.locator('[data-open]').first().boundingBox();assert(!mobile||firstDish.y<450,'Dishes appear high in the phone viewport');
  assert((await page.locator('#result-count').textContent()).startsWith('93'),'93 dishes initially');
  assert(await page.locator('[data-open]').count()===24,'24 initial dishes');
  let width=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth}));

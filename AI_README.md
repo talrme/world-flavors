@@ -28,6 +28,8 @@ Do not alter unrelated dish IDs or overwrite saved user notes. Removed entries' 
 
 ## UX
 
+Keep the top minimal: only the compact World Flavors brand, then functional controls and dishes. The user explicitly removed the promotional heading, subtitle and dish tally to preserve phone space. Do not reintroduce an intro/hero. Result heading and live count remain screen-reader-only, not a visible extra row.
+
 Keep North America and South America separate in both the shared region mapping, picker and wheel. North America includes United States, Canada, Mexico, Central America and Caribbean; South America includes Brazil, Argentina, Uruguay, Chile, Peru and Bolivia. The user explicitly requested this split; do not merge them into Americas again.
 
 The wheel center uses the existing `flags` mapping for a hovered/focused country (including dish-row hover). Broader regions or an idle wheel use the local food PNG. Keep the icon and flag in the same fixed space; do not invent flags for regional groupings or fetch third-party flag assets at runtime. Native emoji rendering supplies the country flag.

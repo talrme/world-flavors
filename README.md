@@ -6,6 +6,8 @@ A food explorer inspired by Tal's World of Flavor photo. The selected Field Note
 
 ## Explore
 
+The page opens directly into the compact header, filters and country lists, without an introductory title, subtitle or dish tally.
+
 93 dishes across 31 countries and regional entries, with 64 home-cooking suggestions and 29 restaurant-first picks. Search by ingredient, dish or country; filter cooking method; bookmark dishes you **Want to try**; mark dishes tried; and keep personal notes. Use the Want to try tab to see your shortlist. Existing bookmarks are preserved.
 
 The circular flavor wheel has separate country sectors, continent bands, keyboard/touch selection, and a smoothly moving highlight. Hovering a dish highlights its country. Tap a country to filter the list. On phones the wheel opens from the Flavor wheel button; on desktop it is also beside the list. Your original photographed wheel is available through Original photo in the wheel dialog.
