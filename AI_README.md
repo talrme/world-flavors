@@ -28,6 +28,8 @@ Do not alter unrelated dish IDs or overwrite saved user notes. Removed entries' 
 
 ## UX
 
+Keep North America and South America separate in both the shared region mapping, picker and wheel. North America includes United States, Canada, Mexico, Central America and Caribbean; South America includes Brazil, Argentina, Uruguay, Chile, Peru and Bolivia. The user explicitly requested this split; do not merge them into Americas again.
+
 The wheel center uses the existing `flags` mapping for a hovered/focused country (including dish-row hover). Broader regions or an idle wheel use the local food PNG. Keep the icon and flag in the same fixed space; do not invent flags for regional groupings or fetch third-party flag assets at runtime. Native emoji rendering supplies the country flag.
 
 `shared/flavors.js` provides representative herbs, spices and blends for all 31 entries, based on the user's original wheel photo. Shared photographed sectors can share notes. Keep these framed as examples, not a definition of a country's entire cuisine. Inline headings show four notes by default; clicking the country name opens the full list. The locally persisted `prefs.flavors` boolean controls inline notes only. Wheel hover/focus always renders the full list in SVG text/tspans; use textContent to avoid injecting content. Preserve readable contrast, center-circle containment and reduced-motion behavior.

@@ -55,7 +55,8 @@ async function run(variant,mobile){
  await page.locator('[data-region-check="europe"]').check();assert((await page.locator('#result-count').textContent()).startsWith('30 '),'Continent adds its countries without clearing others');
  await page.locator('[data-region-check="europe"]').uncheck();assert((await page.locator('#result-count').textContent()).startsWith('3 '),'Continent toggle removes only its countries');
  await page.locator('[data-region-check="asia"]').check();assert((await page.locator('#result-count').textContent()).startsWith('24 '),'Asia selects eight entries');
- await page.locator('[data-region-check="americas"]').check();assert((await page.locator('#result-count').textContent()).startsWith('57 '),'Americas combines with Asia');
+ await page.locator('[data-region-check="north-america"]').check();assert((await page.locator('#result-count').textContent()).startsWith('39 '),'North America adds only its five entries');
+ await page.locator('[data-region-check="south-america"]').check();assert((await page.locator('#result-count').textContent()).startsWith('57 '),'South America adds its six entries independently');
  await page.locator('[data-region-check="africa"]').check();assert((await page.locator('#result-count').textContent()).startsWith('66 '),'Africa adds nine dishes');
  await page.locator('[data-action="select-all-countries"]').click();assert((await page.locator('#result-count').textContent()).startsWith('93 '),'Select all restores all dishes');
  await page.locator('[data-country-check="Germany"]').uncheck();assert((await page.locator('#result-count').textContent()).startsWith('90 '),'Deselect one from all');

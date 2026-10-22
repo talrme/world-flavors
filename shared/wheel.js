@@ -1,4 +1,4 @@
-import {countries,regions,flags} from './data.js?v=20261022-multi';
+import {countries,regions,flags} from './data.js?v=20261022-continents';
 
 import {flavors} from './flavors.js?v=20261022-flavors';
 
